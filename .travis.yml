@@ -8,7 +8,7 @@ node_js:
 addons:
   ssh_known_hosts: ibragimov.by
 
-install: false
+install: /bin/true
 script:
   - node generate-currencies.js
   - rm dist/index.template.html
