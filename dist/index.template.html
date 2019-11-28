@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Currency</title>
+  <link rel="stylesheet" href="./bulma.css">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="shortcut icon" href="./images/ea615cbb-891e-9c99-587b-a41047fb4c3c.webPlatform.png" type="image/png">
+</head>
+<body>
+
+<section class="hero is-bold is-light">
+  <div class="hero-body">
+    <div class="container">
+      <div class="field has-addons">
+        <p class="control">
+          <span class="button is-static">from</span>
+        </p>
+        <p class="control">
+          <span class="select">
+            <label>
+              <select id="fromCurrency">
+              </select>
+            </label>
+          </span>
+        </p>
+        <p class="control">
+          <span class="button is-static">to</span>
+        </p>
+        <p class="control">
+          <span class="select">
+            <label>
+              <select id="toCurrency">
+              </select>
+            </label>
+          </span>
+        </p>
+      </div>
+      <div class="field has-addons">
+        <p class="control">
+          <input id="amount" class="input is-large" type="number" placeholder="Amount" autofocus/>
+        </p>
+        <p class="control">
+          <span id="converted" class="button is-static is-large"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+<script>
+  const amount = document.querySelector("#amount");
+  const fromCurrency = document.querySelector("#fromCurrency");
+  const toCurrency = document.querySelector("#toCurrency");
+
+  const currencies = {"EUR": 1, "USD": 2, "BYN": 3};
+  Object.keys(currencies)
+    .sort((a, b) => {
+      if (["EUR", "BYN", "USD", "DKK"].includes(b)) {
+        return 1;
+      } else {
+        return a - b;
+      }
+    })
+    .forEach(currency => {
+      const optionFrom = document.createElement("option");
+      optionFrom.value = currencies[currency];
+      optionFrom.text = currency;
+      fromCurrency.add(optionFrom);
+
+      const optionTo = document.createElement("option");
+      optionTo.value = currencies[currency];
+      optionTo.text = currency;
+      toCurrency.add(optionTo);
+    });
+
+  loadSelected();
+  updateConvertedValue();
+
+  function updateConvertedValue() {
+    const amountValue = amount.value;
+    const fromOption = fromCurrency.selectedOptions[0];
+    const toOption = toCurrency.selectedOptions[0];
+    const value = (amountValue / (fromOption.value / toOption.value)).toFixed(2);
+    converted.textContent = `${value} ${toOption.text}`;
+  }
+
+  function saveSelected() {
+    const fromOption = fromCurrency.selectedOptions[0].text;
+    const toOption = toCurrency.selectedOptions[0].text;
+    try {
+      localStorage.setItem("selected", JSON.stringify({
+        fromOption,
+        toOption
+      }));
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function loadSelected() {
+    try {
+      const item = localStorage.getItem("selected");
+      if (item) {
+        const settings = JSON.parse(item);
+        setSelected(fromCurrency, settings.fromOption);
+        setSelected(toCurrency, settings.toOption);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function setSelected(select, option) {
+    const candidateOption = [...select.options].find(it => it.text === option);
+
+    if (candidateOption) {
+      candidateOption.selected = true;
+    }
+  }
+
+  amount.addEventListener("keyup", function () {
+    updateConvertedValue();
+  });
+
+  amount.addEventListener("change", function () {
+    updateConvertedValue();
+  });
+
+  toCurrency.addEventListener("change", function () {
+    updateConvertedValue();
+    saveSelected();
+  });
+
+  fromCurrency.addEventListener("change", function () {
+    updateConvertedValue();
+    saveSelected();
+  });
+</script>
+<script>
+  // Check compatibility for the browser we're running this in
+  if ("serviceWorker" in navigator) {
+    if (navigator.serviceWorker.controller) {
+      console.log("[PWA] active service worker found, no need to register");
+    } else {
+      // Register the service worker
+      navigator.serviceWorker
+        .register("/currency/sw.js", {
+          scope: "./"
+        })
+        .then(function (reg) {
+          console.log("[PWA] Service worker has been registered for scope: " + reg.scope);
+        });
+    }
+  }
+</script>
+</html>
