@@ -38,6 +38,9 @@
             </label>
           </span>
         </p>
+        <div class="control">
+          <button id="swapCurrencies" type="submit" class="button is-light">&rightleftarrows;</button>
+        </div>
       </div>
       <div class="field has-addons">
         <p class="control">
@@ -57,6 +60,7 @@
   const amount = document.querySelector("#amount");
   const fromCurrency = document.querySelector("#fromCurrency");
   const toCurrency = document.querySelector("#toCurrency");
+  const swapCurrencies = document.querySelector("#swapCurrencies");
 
   const currencies = {"EUR": 1, "USD": 2, "BYN": 3};
   Object.keys(currencies)
@@ -140,6 +144,16 @@
   fromCurrency.addEventListener("change", function () {
     updateConvertedValue();
     saveSelected();
+  });
+
+  swapCurrencies.addEventListener("click", function () {
+      const fromOption = fromCurrency.selectedOptions[0].text;
+      const toOption = toCurrency.selectedOptions[0].text;
+
+      setSelected(fromCurrency, toOption);
+      setSelected(toCurrency, fromOption);
+      updateConvertedValue();
+      saveSelected();
   });
 </script>
 <script>
