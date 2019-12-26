@@ -65,29 +65,31 @@
   const toCurrency = document.querySelector("#toCurrency");
   const swapCurrencies = document.querySelector("#swapCurrencies");
 
-  const currencies = {"EUR": 1, "USD": 2, "BYN": 3};
-  Object.keys(currencies)
-    .sort((a, b) => {
-      if (["EUR", "BYN", "USD", "DKK"].includes(b)) {
-        return 1;
-      } else {
-        return a - b;
-      }
-    })
+  const allCurrencies = {"EUR": 1, "USD": 2, "BYN": 3};
+  const specialCurrencies = ["AED", "THB", "EUR", "BYN", "USD"];
+  getCurrencies(allCurrencies, specialCurrencies)
     .forEach(currency => {
       const optionFrom = document.createElement("option");
-      optionFrom.value = currencies[currency];
+      optionFrom.value = allCurrencies[currency];
       optionFrom.text = currency;
       fromCurrency.add(optionFrom);
 
       const optionTo = document.createElement("option");
-      optionTo.value = currencies[currency];
+      optionTo.value = allCurrencies[currency];
       optionTo.text = currency;
       toCurrency.add(optionTo);
     });
 
   loadSelected();
   updateConvertedValue();
+
+  function getCurrencies(all, special) {
+    const filtered = Object.keys(all)
+            .filter(it => !special.includes(it))
+            .sort();
+
+    return [...special, ...filtered];
+  }
 
   function updateConvertedValue() {
     const amountValue = amount.value;
