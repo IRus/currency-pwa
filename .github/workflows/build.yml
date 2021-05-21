@@ -1,0 +1,45 @@
+name: "Build"
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "37 13 * * *"
+jobs:
+  build:
+    name: "Build on Node.JS 14.x"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - run: node generate-currencies.js
+      - uses: actions/upload-artifact@v2
+        with:
+          name: "Frontend Application"
+          path: "dist/"
+          retention-days: 1
+  build-and-push-image:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: "Frontend Application"
+          path: "dist/"
+      - run: rm dist/index.template.html
+      - name: "Set up Docker Buildx"
+        uses: docker/setup-buildx-action@v1
+      - name: "Login to GHCR"
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password:  ${{ secrets.GITHUB_TOKEN }}
+      - name: "Build and push"
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: ghcr.io/irus/currency:main

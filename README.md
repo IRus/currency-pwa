@@ -1,7 +1,8 @@
-# currency-pwa [![Build Status](https://travis-ci.org/IRus/currency-pwa.svg?branch=master)](https://travis-ci.org/IRus/currency-pwa)
+# currency-pwa [![Build](https://github.com/IRus/currency-pwa/actions/workflows/build.yml/badge.svg)](https://github.com/IRus/currency-pwa/actions/workflows/build.yml)
+
 PWA currency converter
 
-* Exchange rates updates every day, by cron on Travis CI
+* Exchange rates updates every day, by cron on Github Actions
 * fixer.io used as rates source
 
 ## LICENSE
