@@ -3,26 +3,42 @@ import {useEffect, useState} from "react";
 import {Currency} from "./Currency";
 import {Fixer} from "./Fixer";
 
-const defaultCurrencies = ["USD", "EUR", "BYN"];
+const defaultCurrencies: Data = [
+  {
+    currency: "USD",
+    value: "0"
+  }, {
+    currency: "EUR",
+    value: "0"
+  }, {
+    currency: "BYN",
+    value: "0"
+  }
+];
+
+type Data = Array<{
+  currency: string;
+  value: string;
+}>;
 
 export function Currencies({fixer}: {
   readonly fixer: Fixer
 }) {
-  const [selected, setSelected] = useState<string[]>([]);
+  const [data, setData] = useState<Data>([]);
 
   useEffect(() => {
-    if (selected.length !== 0) return;
+    if (data.length !== 0) return;
     function setDefault() {
-      setSelected(defaultCurrencies)
+      setData(defaultCurrencies)
     }
 
     try {
-      const item = localStorage.getItem("currencies");
-      const settings: string[] = JSON.parse(item ?? "[]")
+      const item = localStorage.getItem("currency_data");
+      const settings: Data = JSON.parse(item ?? "[]")
       if (settings.length === 0) {
         setDefault()
       }  else {
-        setSelected((settings))
+        setData(settings)
       }
     } catch (e) {
       console.error(e);
@@ -30,44 +46,59 @@ export function Currencies({fixer}: {
     }
   });
 
-  function changeSelected(selected: string[]) {
-    setSelected(selected);
+  function changeData(newData: Data) {
+    setData(newData);
     try {
-      localStorage.setItem("currencies", JSON.stringify(selected));
+      localStorage.setItem("currency_data", JSON.stringify(newData));
     } catch (e) {
       console.error(e);
     }
   }
 
   function addCurrency() {
-    changeSelected([...selected, "USD"])
+    changeData([...data, {currency: "USD", value: ""}])
   }
 
   function deleteCurrency(id: number) {
-    const selectedCopy = [...selected];
-    selectedCopy.splice(id, 1);
-    changeSelected(selectedCopy);
+    const dataCopy = [...data];
+    dataCopy.splice(id, 1);
+    changeData(dataCopy);
   }
 
-  function updateCurrency(id: number, currency: string) {
-    const selectedCopy = [...selected];
-    selectedCopy[id] = currency;
-    changeSelected(selectedCopy)
-  }
+  function update(id: number, fromCurrency: string, value: string) {
+    const normalizedValue = normalize(value);
+    const dataCopy = [...data];
+    dataCopy[id].currency = fromCurrency;
 
-  const value = 1
+    const newData: Data = dataCopy.map((row, idx) => {
+      if (id === idx) {
+        return {
+          currency: row.currency,
+          value: normalizedValue === "0" ? "" : value
+        };
+      } else {
+        const amountCurrency = (Number(normalizedValue) / (fixer[fromCurrency] / fixer[row.currency])).toFixed(2)
+        return {
+          currency: row.currency,
+          value: amountCurrency
+        };
+      }
+    });
+
+    changeData(newData);
+  }
 
   return (
     <div className="box">
-      {selected.map((currency, idx) =>
+      {data.map((row, idx) =>
         <Currency
           id={idx}
           key={idx}
           fixer={fixer}
-          currency={currency}
-          value={value}
+          currency={row.currency}
+          value={row.value ?? "0"}
           onDelete={deleteCurrency}
-          onChangeCurrency={updateCurrency}
+          update={update}
         />
       )}
       <button
@@ -77,4 +108,27 @@ export function Currencies({fixer}: {
       </button>
     </div>
   )
+}
+
+const inputLookup = {
+  0: 0,
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+  6: 6,
+  7: 7,
+  8: 8,
+  9: 9,
+  ",": ".",
+  ".": ".",
+  " ": ""
+}
+
+function normalize(input: string): string {
+  return input.toString()
+    .split("")
+    .map(c => inputLookup[c] ?? "")
+    .join("")
 }
