@@ -1,2 +1,17 @@
+# Intellij IDEA
 .idea
-dist/index.html
+
+# Data
+/src/data.json
+
+# Webpack
+/dist/
+
+# Yarn 2
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
