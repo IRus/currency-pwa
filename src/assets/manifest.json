@@ -14,97 +14,97 @@
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "./favicon-44x44.png",
+            "src": "/currency/assets/favicon-44x44.png",
             "sizes": "44x44",
             "type": "image/png"
         },
         {
-            "src": "./favicon-48x48.png",
+            "src": "/currency/assets/favicon-48x48.png",
             "sizes": "48x48",
             "type": "image/png"
         },
         {
-            "src": "./favicon-1240x600.png",
+            "src": "/currency/assets/favicon-1240x600.png",
             "sizes": "1240x600",
             "type": "image/png"
         },
         {
-            "src": "./favicon-300x300.png",
+            "src": "/currency/assets/favicon-300x300.png",
             "sizes": "300x300",
             "type": "image/png"
         },
         {
-            "src": "./favicon-150x150.png",
+            "src": "/currency/assets/favicon-150x150.png",
             "sizes": "150x150",
             "type": "image/png"
         },
         {
-            "src": "./favicon-88x88.png",
+            "src": "/currency/assets/favicon-88x88.png",
             "sizes": "88x88",
             "type": "image/png"
         },
         {
-            "src": "./favicon-24x24.png",
+            "src": "/currency/assets/favicon-24x24.png",
             "sizes": "24x24",
             "type": "image/png"
         },
         {
-            "src": "./favicon-50x50.png",
+            "src": "/currency/assets/favicon-50x50.png",
             "sizes": "50x50",
             "type": "image/png"
         },
         {
-            "src": "./favicon-620x300.png",
+            "src": "/currency/assets/favicon-620x300.png",
             "sizes": "620x300",
             "type": "image/png"
         },
         {
-            "src": "./favicon-192x192.png",
+            "src": "/currency/assets/favicon-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "./favicon-144x144.png",
+            "src": "/currency/assets/favicon-144x144.png",
             "sizes": "144x144",
             "type": "image/png"
         },
         {
-            "src": "./favicon-96x96.png",
+            "src": "/currency/assets/favicon-96x96.png",
             "sizes": "96x96",
             "type": "image/png"
         },
         {
-            "src": "./favicon-72x72.png",
+            "src": "/currency/assets/favicon-72x72.png",
             "sizes": "72x72",
             "type": "image/png"
         },
         {
-            "src": "./favicon-36x36.png",
+            "src": "/currency/assets/favicon-36x36.png",
             "sizes": "36x36",
             "type": "image/png"
         },
         {
-            "src": "./favicon-1024x1024.png",
+            "src": "/currency/assets/favicon-1024x1024.png",
             "sizes": "1024x1024",
             "type": "image/png"
         },
         {
-            "src": "./favicon-180x180.png",
+            "src": "/currency/assets/favicon-180x180.png",
             "sizes": "180x180",
             "type": "image/png"
         },
         {
-            "src": "./favicon-152x152.png",
+            "src": "/currency/assets/favicon-152x152.png",
             "sizes": "152x152",
             "type": "image/png"
         },
         {
-            "src": "./favicon-120x120.png",
+            "src": "/currency/assets/favicon-120x120.png",
             "sizes": "120x120",
             "type": "image/png"
         },
         {
-            "src": "./favicon-76x76.png",
+            "src": "/currency/assets/favicon-76x76.png",
             "sizes": "76x76",
             "type": "image/png"
         }
