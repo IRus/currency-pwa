@@ -1,0 +1,75 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #333;
+    --text-color: #fff;
+    --link-color: #0cf6ff;
+    --link-color-hover: #92f8ff;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: rgba(198, 151, 239, 0.29);
+    --text-color: #555;
+    --link-color: #0c79ff;
+    --link-color-hover: #85bbff;
+  }
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color)
+}
+
+a:hover {
+  color: var(--link-color-hover)
+}
+
+a:focus {
+}
+
+a:focus:not(:active) {
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+.currencies-page {
+  padding: 20px;
+}
+
+.add-currency {
+  background-color: #ebfffc;
+  border-color: transparent;
+  color: #00947e;
+}
+
+.add-currency:hover {
+  background-color: #defffa;
+  border-color: transparent;
+  color: #00947e;
+}
+
+.add-currency:focus {
+  border-color: transparent;
+}
+
+.add-currency:focus:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+}
+
+.add-currency:active {
+  background-color: #d1fff8;
+  border-color: transparent;
+  color: #00947e;
+}
