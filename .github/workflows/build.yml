@@ -33,6 +33,7 @@ jobs:
         with:
           name: "Frontend Application"
           path: "dist/"
+      - run: ls -laR
       - name: "Set up Docker Buildx"
         uses: docker/setup-buildx-action@v1
       - name: "Login to GHCR"
