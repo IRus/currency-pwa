@@ -14,97 +14,97 @@
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "./images/ea615cbb-891e-9c99-587b-a41047fb4c3c.webPlatform.png",
+            "src": "./favicon-44x44.png",
             "sizes": "44x44",
             "type": "image/png"
         },
         {
-            "src": "./images/5476d02a-d70d-744d-059d-9610af315624.webPlatform.png",
+            "src": "./favicon-48x48.png",
             "sizes": "48x48",
             "type": "image/png"
         },
         {
-            "src": "./images/d1fea2cb-6d46-af4a-cf4d-45b84369088c.webPlatform.png",
+            "src": "./favicon-1240x600.png",
             "sizes": "1240x600",
             "type": "image/png"
         },
         {
-            "src": "./images/36a7f4ba-d27f-b786-5081-58885d8ce81d.webPlatform.png",
+            "src": "./favicon-300x300.png",
             "sizes": "300x300",
             "type": "image/png"
         },
         {
-            "src": "./images/4fc1b118-258a-ec11-15ae-84541aab87d8.webPlatform.png",
+            "src": "./favicon-150x150.png",
             "sizes": "150x150",
             "type": "image/png"
         },
         {
-            "src": "./images/ac54b7d3-f747-8b72-1320-0f3dba3f2a3d.webPlatform.png",
+            "src": "./favicon-88x88.png",
             "sizes": "88x88",
             "type": "image/png"
         },
         {
-            "src": "./images/bf123fe8-efa5-6449-ba87-c7beb87df256.webPlatform.png",
+            "src": "./favicon-24x24.png",
             "sizes": "24x24",
             "type": "image/png"
         },
         {
-            "src": "./images/91344fb7-bf14-11df-cbcd-2229e4631306.webPlatform.png",
+            "src": "./favicon-50x50.png",
             "sizes": "50x50",
             "type": "image/png"
         },
         {
-            "src": "./images/0b553229-ae89-bbb1-7b31-26a74e5f1583.webPlatform.png",
+            "src": "./favicon-620x300.png",
             "sizes": "620x300",
             "type": "image/png"
         },
         {
-            "src": "./images/58b05c03-08b3-25b9-dd7d-b11583486c89.webPlatform.png",
+            "src": "./favicon-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "./images/d620cbfd-3ccc-4831-67e1-77c8322539af.webPlatform.png",
+            "src": "./favicon-144x144.png",
             "sizes": "144x144",
             "type": "image/png"
         },
         {
-            "src": "./images/586666a8-1e9b-6d79-6a20-a92989662a0d.webPlatform.png",
+            "src": "./favicon-96x96.png",
             "sizes": "96x96",
             "type": "image/png"
         },
         {
-            "src": "./images/a7f1bb14-d430-65bf-4a09-0656d06c1532.webPlatform.png",
+            "src": "./favicon-72x72.png",
             "sizes": "72x72",
             "type": "image/png"
         },
         {
-            "src": "./images/f43587fd-ffee-9d1b-7892-bb9196cc75f5.webPlatform.png",
+            "src": "./favicon-36x36.png",
             "sizes": "36x36",
             "type": "image/png"
         },
         {
-            "src": "./images/c4c6ed7a-4de4-340c-7502-6269b2b87b0c.webPlatform.png",
+            "src": "./favicon-1024x1024.png",
             "sizes": "1024x1024",
             "type": "image/png"
         },
         {
-            "src": "./images/0d6479fd-eefb-e8ee-81a8-69e6b58d2648.webPlatform.png",
+            "src": "./favicon-180x180.png",
             "sizes": "180x180",
             "type": "image/png"
         },
         {
-            "src": "./images/6d05a852-fc86-fda0-bef8-7b3cb3e56314.webPlatform.png",
+            "src": "./favicon-152x152.png",
             "sizes": "152x152",
             "type": "image/png"
         },
         {
-            "src": "./images/f14c7bb1-39b7-85be-f1a6-0e159c3b41fd.webPlatform.png",
+            "src": "./favicon-120x120.png",
             "sizes": "120x120",
             "type": "image/png"
         },
         {
-            "src": "./images/65d2b0e3-f762-42bc-55e3-149c520cedf1.webPlatform.png",
+            "src": "./favicon-76x76.png",
             "sizes": "76x76",
             "type": "image/png"
         }
