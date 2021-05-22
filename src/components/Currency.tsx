@@ -34,6 +34,7 @@ export function Currency({id, fixer, currency, value, onDelete, update, selected
           placeholder=""
           value={value}
           autoFocus={selected}
+          onClick={event => update(id, currency, "")}
           onChange={event => update(id, currency, event.target.value)}
         />
       </p>
