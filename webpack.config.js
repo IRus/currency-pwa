@@ -14,7 +14,7 @@ module.exports = function (env, argv) {
       path: path.resolve(__dirname, "dist"),
       filename: "[name].js?[contenthash]",
       chunkFilename: "[name].bundle.js?[chunkhash]",
-      publicPath: "/"
+      publicPath: "/currency"
     },
     resolve: {
       extensions: [".ts", ".tsx", ".js"]
