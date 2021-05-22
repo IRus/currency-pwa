@@ -1,65 +1,3 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Currency</title>
-  <link rel="stylesheet" href="./bulma.css">
-  <link rel="manifest" href="./manifest.json">
-  <link rel="shortcut icon" href="./images/ea615cbb-891e-9c99-587b-a41047fb4c3c.webPlatform.png" type="image/png">
-  <link rel="apple-touch-icon" href="./images/c4c6ed7a-4de4-340c-7502-6269b2b87b0c.webPlatform.png"/>
-</head>
-<body>
-
-<section class="hero is-bold is-light">
-  <div class="hero-body">
-    <div class="container">
-      <div class="field has-addons">
-        <p class="control">
-          <span class="button is-static">from</span>
-        </p>
-        <p class="control">
-          <span class="select">
-            <label>
-              <select id="fromCurrency">
-              </select>
-            </label>
-          </span>
-        </p>
-        <p class="control">
-          <span class="button is-static">to</span>
-        </p>
-        <p class="control">
-          <span class="select">
-            <label>
-              <select id="toCurrency">
-              </select>
-            </label>
-          </span>
-        </p>
-        <div class="control">
-          <button id="swapCurrencies" type="submit" class="button is-light">&rightleftarrows;</button>
-        </div>
-      </div>
-      <div class="field has-addons">
-        <p class="control">
-          <input id="amount" class="input is-large" type="number" placeholder="Amount" autofocus/>
-        </p>
-        <p class="control">
-          <span id="converted" class="button is-static is-large"></span>
-        </p>
-      </div>
-      <h2>
-        <a href="https://github.com/IRus/currency-pwa">GitHub</a> &bullet;
-        <span class="has-text-grey">Last update: January 1, 1970</span>
-      </h2>
-    </div>
-  </div>
-</section>
-
-</body>
 <script>
   const amount = document.querySelector("#amount");
   const fromCurrency = document.querySelector("#fromCurrency");
@@ -162,21 +100,4 @@
       saveSelected();
   });
 </script>
-<script>
-  // Check compatibility for the browser we're running this in
-  if ("serviceWorker" in navigator) {
-    if (navigator.serviceWorker.controller) {
-      console.log("[PWA] active service worker found, no need to register");
-    } else {
-      // Register the service worker
-      navigator.serviceWorker
-        .register("/currency/sw.js", {
-          scope: "./"
-        })
-        .then(function (reg) {
-          console.log("[PWA] Service worker has been registered for scope: " + reg.scope);
-        });
-    }
-  }
-</script>
-</html>
+
