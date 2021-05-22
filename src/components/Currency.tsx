@@ -1,18 +1,19 @@
 import * as React from "react";
 import {Fixer} from "./Fixer";
 
-export function Currency({id, fixer, currency, value, onDelete, update}: {
+export function Currency({id, fixer, currency, value, onDelete, update, selected}: {
   readonly id: number,
   readonly fixer: Fixer
   readonly currency: string,
   readonly value: string,
   readonly onDelete: (id: number) => void,
   readonly update: (id: number, currency: string, value: string) => void,
+  readonly selected: boolean
 }) {
   return (
     <div className="field has-addons">
       <p className="control">
-        <span className="select">
+        <span className={selected ? "select is-primary" : "select"}>
           <select
             value={currency}
             onChange={event => update(id, event.target.value, value)}>
@@ -28,10 +29,11 @@ export function Currency({id, fixer, currency, value, onDelete, update}: {
       </p>
       <p className="control">
         <input
-          className="input"
+          className={selected ? "input is-primary" : "input"}
           type="text"
           placeholder=""
           value={value}
+          autoFocus={selected}
           onChange={event => update(id, currency, event.target.value)}
         />
       </p>

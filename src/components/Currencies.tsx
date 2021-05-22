@@ -6,7 +6,8 @@ import {Fixer} from "./Fixer";
 const defaultCurrencies: Data = [
   {
     currency: "USD",
-    value: "0"
+    value: "1",
+    selected: true
   }, {
     currency: "EUR",
     value: "0"
@@ -19,6 +20,7 @@ const defaultCurrencies: Data = [
 type Data = Array<{
   currency: string;
   value: string;
+  selected?: boolean;
 }>;
 
 export function Currencies({fixer}: {
@@ -29,7 +31,7 @@ export function Currencies({fixer}: {
   useEffect(() => {
     if (data.length !== 0) return;
     function setDefault() {
-      setData(defaultCurrencies)
+      changeData(defaultCurrencies, 0)
     }
 
     try {
@@ -38,7 +40,7 @@ export function Currencies({fixer}: {
       if (settings.length === 0) {
         setDefault()
       }  else {
-        setData(settings)
+        changeData(settings, 0)
       }
     } catch (e) {
       console.error(e);
@@ -46,35 +48,16 @@ export function Currencies({fixer}: {
     }
   });
 
-  function changeData(newData: Data) {
-    setData(newData);
-    try {
-      localStorage.setItem("currency_data", JSON.stringify(newData));
-    } catch (e) {
-      console.error(e);
-    }
-  }
+  function changeData(newData: Data, id: number) {
+    const fromCurrency = newData[id].currency;
+    const normalizedValue = normalize(newData[id].value);
 
-  function addCurrency() {
-    changeData([...data, {currency: "USD", value: ""}])
-  }
-
-  function deleteCurrency(id: number) {
-    const dataCopy = [...data];
-    dataCopy.splice(id, 1);
-    changeData(dataCopy);
-  }
-
-  function update(id: number, fromCurrency: string, value: string) {
-    const normalizedValue = normalize(value);
-    const dataCopy = [...data];
-    dataCopy[id].currency = fromCurrency;
-
-    const newData: Data = dataCopy.map((row, idx) => {
+    const reconciledData: Data = newData.map((row, idx) => {
       if (id === idx) {
         return {
           currency: row.currency,
-          value: normalizedValue === "0" ? "" : value
+          value: normalizedValue === "0" ? "" : newData[id].value,
+          selected: true
         };
       } else {
         const amountCurrency = (Number(normalizedValue) / (fixer[fromCurrency] / fixer[row.currency])).toFixed(2)
@@ -85,7 +68,32 @@ export function Currencies({fixer}: {
       }
     });
 
-    changeData(newData);
+    setData(reconciledData);
+
+    try {
+      localStorage.setItem("currency_data", JSON.stringify(reconciledData));
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function addCurrency() {
+    changeData([...data, {currency: "USD", value: ""}], 0)
+  }
+
+  function deleteCurrency(id: number) {
+    if (data.length === 1) return;
+    const dataCopy = [...data];
+    dataCopy.splice(id, 1);
+    changeData(dataCopy, 0);
+  }
+
+  function update(id: number, fromCurrency: string, value: string) {
+    const dataCopy = [...data];
+    dataCopy[id].currency = fromCurrency;
+    dataCopy[id].value = value;
+
+    changeData(dataCopy, id);
   }
 
   return (
@@ -97,6 +105,7 @@ export function Currencies({fixer}: {
           fixer={fixer}
           currency={row.currency}
           value={row.value ?? "0"}
+          selected={row.selected ?? false}
           onDelete={deleteCurrency}
           update={update}
         />
