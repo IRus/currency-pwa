@@ -48,7 +48,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mini-css-extract-plugin", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:1.6.0"],
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:17.0.2"],
-            ["ts-loader", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:9.2.1"],
+            ["ts-loader", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:9.2.2"],
             ["typescript", "patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"],
             ["webpack", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:5.37.1"],
             ["webpack-cli", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:4.7.0"],
@@ -1573,7 +1573,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mini-css-extract-plugin", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:1.6.0"],
             ["react", "npm:17.0.2"],
             ["react-dom", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:17.0.2"],
-            ["ts-loader", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:9.2.1"],
+            ["ts-loader", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:9.2.2"],
             ["typescript", "patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"],
             ["webpack", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:5.37.1"],
             ["webpack-cli", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:4.7.0"],
@@ -5945,17 +5945,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["ts-loader", [
-        ["npm:9.2.1", {
-          "packageLocation": "./.yarn/cache/ts-loader-npm-9.2.1-40e1a5908e-492ec730ae.zip/node_modules/ts-loader/",
+        ["npm:9.2.2", {
+          "packageLocation": "./.yarn/cache/ts-loader-npm-9.2.2-ca65d480ba-448807877b.zip/node_modules/ts-loader/",
           "packageDependencies": [
-            ["ts-loader", "npm:9.2.1"]
+            ["ts-loader", "npm:9.2.2"]
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:9.2.1", {
-          "packageLocation": "./.yarn/$$virtual/ts-loader-virtual-4b90989992/0/cache/ts-loader-npm-9.2.1-40e1a5908e-492ec730ae.zip/node_modules/ts-loader/",
+        ["virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:9.2.2", {
+          "packageLocation": "./.yarn/$$virtual/ts-loader-virtual-d0e3624f56/0/cache/ts-loader-npm-9.2.2-ca65d480ba-448807877b.zip/node_modules/ts-loader/",
           "packageDependencies": [
-            ["ts-loader", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:9.2.1"],
+            ["ts-loader", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:9.2.2"],
             ["@types/typescript", null],
             ["@types/webpack", null],
             ["chalk", "npm:4.1.1"],
