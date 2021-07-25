@@ -32,19 +32,21 @@
   <script>
     // Check compatibility for the browser we're running this in
     if ("serviceWorker" in navigator) {
-      if (navigator.serviceWorker.controller) {
-        console.log("[PWA] active service worker found, no need to register");
-      } else {
-        // Register the service worker
-        navigator.serviceWorker
-          .register("/currency/sw.js?<%= ts %>")
-          .then(function (reg) {
-            console.log("[PWA] Service worker has been registered for scope: " + reg.scope);
-          })
-          .catch(error => {
-            console.error("[PWA] Failed to register service worker: " + error);
-          });
-      }
+      navigator.serviceWorker
+        .register("/currency/sw.js?<%= ts %>")
+        .then(function (reg) {
+          try {
+            console.log("[PWA] Updating service worker")
+            reg.update()
+            console.log("[PWA] Update successful")
+          } catch (e) {
+            console.error("[PWA] Update failed: ", e)
+          }
+          console.log("[PWA] Service worker has been registered for scope: " + reg.scope);
+        })
+        .catch(error => {
+          console.error("[PWA] Failed to register service worker: " + error);
+        });
     }
   </script>
 </body>
