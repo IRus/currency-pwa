@@ -49,6 +49,10 @@ module.exports = function (env, argv) {
             from: path.resolve(__dirname, "src", "assets"),
             to: path.resolve(__dirname, "dist", "assets"),
             filter: (resourcePath) => !resourcePath.endsWith(".sh"),
+          },
+          {
+            from: path.resolve(__dirname, "src", "sw"),
+            to: path.resolve(__dirname, "dist")
           }
         ]
       }),
