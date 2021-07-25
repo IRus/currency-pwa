@@ -40,7 +40,10 @@ module.exports = function (env, argv) {
     plugins: [
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "src", "index.html"),
-        hash: true
+        hash: true,
+        templateParameters: {
+          "ts": Date.now()
+        },
       }),
       new MiniCssExtractPlugin(),
       new CopyWebpackPlugin({

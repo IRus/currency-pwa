@@ -6,25 +6,25 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="manifest" href="/currency/assets/manifest.json">
+  <link rel="manifest" href="/currency/assets/manifest.json?<%= ts %>">
 
   <!-- https://github.com/audreyr/favicon-cheat-sheet -->
   <meta name="msapplication-TileColor" content="#FFFFFF">
-  <meta name="msapplication-TileImage" content="/currency/assets/favicon-144x144.png">
-  <link rel="icon" href="/currency/assets/favicon-32x32.png" sizes="32x32">
-  <link rel="icon" href="/currency/assets/favicon-16x16.png" sizes="16x16">
-  <link rel="shortcut icon" href="/currency/assets/favicon.ico">
-  <link rel="shortcut icon" sizes="196x196" href="/currency/assets/favicon-196x196.png">
-  <link rel="mask-icon" href="/currency/assets/mask-icon.svg" color="#009DD9">
-  <link rel="apple-touch-icon" href="/currency/assets/favicon-1024x1024.png"/>
-  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/currency/assets/favicon-180x180.png">
-  <link rel="apple-touch-icon-precomposed" href="/currency/assets/favicon-152x152.png">
-  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/currency/assets/favicon-152x152.png">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/currency/assets/favicon-144x144.png">
-  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/currency/assets/favicon-120x120.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/currency/assets/favicon-114x114.png">
-  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/currency/assets/favicon-76x76.png">
-  <link rel="apple-touch-icon-precomposed" href="/currency/assets/favicon-57x57.png">
+  <meta name="msapplication-TileImage" content="/currency/assets/favicon-144x144.png?<%= ts %>">
+  <link rel="icon" href="/currency/assets/favicon-32x32.png?<%= ts %>" sizes="32x32">
+  <link rel="icon" href="/currency/assets/favicon-16x16.png?<%= ts %>" sizes="16x16">
+  <link rel="shortcut icon" href="/currency/assets/favicon.ico?<%= ts %>">
+  <link rel="shortcut icon" sizes="196x196" href="/currency/assets/favicon-196x196.png?<%= ts %>">
+  <link rel="mask-icon" href="/currency/assets/mask-icon.svg?<%= ts %>" color="#009DD9">
+  <link rel="apple-touch-icon" href="/currency/assets/favicon-1024x1024.png?<%= ts %>"/>
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/currency/assets/favicon-180x180.png?<%= ts %>">
+  <link rel="apple-touch-icon-precomposed" href="/currency/assets/favicon-152x152.png?<%= ts %>">
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/currency/assets/favicon-152x152.png?<%= ts %>">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/currency/assets/favicon-144x144.png?<%= ts %>">
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/currency/assets/favicon-120x120.png?<%= ts %>">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/currency/assets/favicon-114x114.png?<%= ts %>">
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/currency/assets/favicon-76x76.png?<%= ts %>">
+  <link rel="apple-touch-icon-precomposed" href="/currency/assets/favicon-57x57.png?<%= ts %>">
 </head>
 <body>
   <div id="root"></div>
@@ -37,7 +37,7 @@
       } else {
         // Register the service worker
         navigator.serviceWorker
-          .register("/currency/sw.js")
+          .register("/currency/sw.js?<%= ts %>")
           .then(function (reg) {
             console.log("[PWA] Service worker has been registered for scope: " + reg.scope);
           })

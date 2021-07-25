@@ -1,25 +1,10 @@
 const CACHE = "ibragimov-currency-offline";
 
-const offlineFallbackPage = "index.html";
-
-// Install stage sets up the index page (home page) in the cache and opens a new cache
 self.addEventListener("install", function (event) {
   console.log("[PWA Builder] Install Event processing");
-
-  event.waitUntil(
-    caches.open(CACHE).then(function (cache) {
-      console.log("[PWA Builder] Cached offline page during install");
-
-      if (offlineFallbackPage === "ToDo-replace-this-name.html") {
-        return cache.add(new Response("TODO: Update the value of the offlineFallbackPage constant in the serviceworker."));
-      }
-
-      return cache.add(offlineFallbackPage);
-    })
-  );
+  event.waitUntil(Promise.resolve());
 });
 
-// If any fetch fails, it will look for the request in the cache and serve it from there first
 self.addEventListener("fetch", function (event) {
   if (event.request.method !== "GET") return;
 
@@ -41,9 +26,6 @@ self.addEventListener("fetch", function (event) {
 });
 
 function fromCache(request) {
-  // Check to see if you have it in the cache
-  // Return response
-  // If not in the cache, then return error page
   return caches.open(CACHE).then(function (cache) {
     return cache.match(request).then(function (matching) {
       if (!matching || matching.status === 404) {
@@ -57,6 +39,7 @@ function fromCache(request) {
 
 function updateCache(request, response) {
   return caches.open(CACHE).then(function (cache) {
+    console.log("Update cache", request)
     return cache.put(request, response);
   });
 }
