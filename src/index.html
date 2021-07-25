@@ -33,7 +33,7 @@
     // Check compatibility for the browser we're running this in
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
-        .register("/currency/sw.js?<%= ts %>")
+        .register("/currency/sw.js")
         .then(function (reg) {
           try {
             console.log("[PWA] Updating service worker")

@@ -39,7 +39,6 @@ function fromCache(request) {
 
 function updateCache(request, response) {
   return caches.open(CACHE).then(function (cache) {
-    console.log("Update cache", request)
     return cache.put(request, response);
   });
 }
