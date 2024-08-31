@@ -2050,7 +2050,7 @@ const RAW_RUNTIME_STATE =
           ["@nodelib/fs.walk", "npm:1.2.6"],\
           ["glob-parent", "npm:5.1.2"],\
           ["merge2", "npm:1.4.1"],\
-          ["micromatch", "npm:4.0.5"]\
+          ["micromatch", "npm:4.0.8"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -2585,7 +2585,7 @@ const RAW_RUNTIME_STATE =
           ["http-proxy", "npm:1.18.1"],\
           ["is-glob", "npm:4.0.1"],\
           ["is-plain-obj", "npm:3.0.0"],\
-          ["micromatch", "npm:4.0.4"]\
+          ["micromatch", "npm:4.0.8"]\
         ],\
         "packagePeers": [\
           "@types/express"\
@@ -3131,19 +3131,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["micromatch", [\
-      ["npm:4.0.4", {\
-        "packageLocation": "./.yarn/cache/micromatch-npm-4.0.4-9fdcbb7a0e-c499da5aad.zip/node_modules/micromatch/",\
+      ["npm:4.0.8", {\
+        "packageLocation": "./.yarn/cache/micromatch-npm-4.0.8-c9570e4aca-6bf2a01672.zip/node_modules/micromatch/",\
         "packageDependencies": [\
-          ["micromatch", "npm:4.0.4"],\
-          ["braces", "npm:3.0.3"],\
-          ["picomatch", "npm:2.2.3"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
-      ["npm:4.0.5", {\
-        "packageLocation": "./.yarn/cache/micromatch-npm-4.0.5-cfab5d7669-a749888789.zip/node_modules/micromatch/",\
-        "packageDependencies": [\
-          ["micromatch", "npm:4.0.5"],\
+          ["micromatch", "npm:4.0.8"],\
           ["braces", "npm:3.0.3"],\
           ["picomatch", "npm:2.3.1"]\
         ],\
@@ -4835,7 +4826,7 @@ const RAW_RUNTIME_STATE =
           ["@types/webpack", null],\
           ["chalk", "npm:4.1.1"],\
           ["enhanced-resolve", "npm:5.8.2"],\
-          ["micromatch", "npm:4.0.4"],\
+          ["micromatch", "npm:4.0.8"],\
           ["semver", "npm:7.3.5"],\
           ["source-map", "npm:0.7.4"],\
           ["typescript", "patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"],\
