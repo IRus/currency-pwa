@@ -1495,10 +1495,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["cross-spawn", [\
-      ["npm:7.0.3", {\
-        "packageLocation": "./.yarn/cache/cross-spawn-npm-7.0.3-e4ff3e65b3-e1a13869d2.zip/node_modules/cross-spawn/",\
+      ["npm:7.0.6", {\
+        "packageLocation": "./.yarn/cache/cross-spawn-npm-7.0.6-264bddf921-0d52657d7a.zip/node_modules/cross-spawn/",\
         "packageDependencies": [\
-          ["cross-spawn", "npm:7.0.3"],\
+          ["cross-spawn", "npm:7.0.6"],\
           ["path-key", "npm:3.1.1"],\
           ["shebang-command", "npm:2.0.0"],\
           ["which", "npm:2.0.2"]\
@@ -2020,7 +2020,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/execa-npm-5.0.0-4ee568fb49-9cc45d6827.zip/node_modules/execa/",\
         "packageDependencies": [\
           ["execa", "npm:5.0.0"],\
-          ["cross-spawn", "npm:7.0.3"],\
+          ["cross-spawn", "npm:7.0.6"],\
           ["get-stream", "npm:6.0.1"],\
           ["human-signals", "npm:2.1.0"],\
           ["is-stream", "npm:2.0.0"],\
@@ -5156,7 +5156,7 @@ const RAW_RUNTIME_STATE =
           ["@webpack-cli/serve", "virtual:22b2d9e6481b72f549b005ae32e173e2cd2f1aa5a98ff56e03d7c6952038aafe70f3ea19a217a5dd21eab4693ac1eea3aaec49e1506f774c29d05dfb7e055b7e#npm:2.0.5"],\
           ["colorette", "npm:2.0.20"],\
           ["commander", "npm:10.0.1"],\
-          ["cross-spawn", "npm:7.0.3"],\
+          ["cross-spawn", "npm:7.0.6"],\
           ["envinfo", "npm:7.8.1"],\
           ["fastest-levenshtein", "npm:1.0.12"],\
           ["import-local", "npm:3.0.2"],\
