@@ -1,7 +1,7 @@
-const http = require("http");
+const https = require("https");
 const fs = require("fs");
 
-http.get(`http://data.fixer.io/api/latest?access_key=${process.env.FIXER_IO_TOKEN}&format=1`, (response) => {
+https.get(`https://data.fixer.io/api/latest?access_key=${process.env.FIXER_IO_TOKEN}`, (response) => {
     const chunks = [];
 
     response.on("data", (chunk) => {
