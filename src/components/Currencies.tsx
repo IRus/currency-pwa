@@ -79,7 +79,15 @@ export function Currencies({fixer}: {
   }
 
   function addCurrency() {
-    changeData([...data, {currency: "USD", value: ""}], 0)
+    const preferredCurrencies = ["USD", "EUR", "BYN", "PLN", "DKK", "SEK", "GEL"];
+    const usedCurrencies = data.map(item => item.currency);
+    const availableCurrency = preferredCurrencies.find(currency => !usedCurrencies.includes(currency));// If all preferred currencies are in use, use a random currency from the fixer object
+    const newCurrency = availableCurrency ||
+      Object.keys(fixer).filter(currency => !usedCurrencies.includes(currency))[
+        Math.floor(Math.random() * (Object.keys(fixer).length - usedCurrencies.length))
+      ] || "USD";
+
+    changeData([...data, {currency: newCurrency, value: ""}], 0);
   }
 
   function deleteCurrency(id: number) {
