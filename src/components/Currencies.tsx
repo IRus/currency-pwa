@@ -47,7 +47,7 @@ export function Currencies({fixer}: {
       console.error(e);
       setDefault()
     }
-  });
+  }, []);
 
   function changeData(newData: Data, id: number) {
     const fromCurrency = newData[id].currency;
@@ -119,4 +119,3 @@ export function Currencies({fixer}: {
     </div>
   )
 }
-
