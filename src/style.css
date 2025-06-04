@@ -174,7 +174,8 @@ a:active {
   margin-right: -1px;
 }
 
-.form-group--inline > *:first-child > * {
+.form-group--inline > *:first-child > *,
+.form-group--inline > *:first-child > .select > select {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
