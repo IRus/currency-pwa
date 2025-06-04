@@ -4,15 +4,15 @@ export function Footer({updated}: {
   readonly updated: string
 }) {
   return (
-    <div className="block">
+    <div className="section">
       <h2>
-        <p className="has-text-centered">
+        <p className="text-center">
           Last update: {updated}
         </p>
-        <p className="has-text-centered">
-          <button className="button is-ghost is-small">
-            <a href="https://github.com/IRus/currency-pwa">❤︎ GitHub</a>
-          </button>
+        <p className="text-center">
+          <a href="https://github.com/IRus/currency-pwa" className="btn btn--ghost btn--small">
+            ❤︎ GitHub
+          </a>
         </p>
       </h2>
     </div>

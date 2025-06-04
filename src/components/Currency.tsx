@@ -12,9 +12,9 @@ export function Currency({id, fixer, currency, value, onDelete, update, selected
   readonly selected: boolean
 }) {
   return (
-    <div className="field has-addons">
-      <p className="control">
-        <span className={selected ? "select is-primary" : "select"}>
+    <div className="form-group form-group--inline">
+      <div className="form-control-wrapper">
+        <div className={selected ? "select select--primary" : "select"}>
           <select
             value={currency}
             onChange={event => update(id, event.target.value, value)}>
@@ -26,11 +26,11 @@ export function Currency({id, fixer, currency, value, onDelete, update, selected
               </option>
             )}
           </select>
-        </span>
-      </p>
-      <p className="control">
+        </div>
+      </div>
+      <div className="form-control-wrapper">
         <input
-          className={selected ? "input is-primary" : "input"}
+          className={selected ? "input input--primary" : "input"}
           type="text"
           placeholder=""
           value={value}
@@ -38,14 +38,14 @@ export function Currency({id, fixer, currency, value, onDelete, update, selected
           onClick={event => update(id, currency, "")}
           onChange={event => update(id, currency, event.target.value)}
         />
-      </p>
-      <p className="control">
+      </div>
+      <div className="form-control-wrapper">
         <button
           onClick={() => onDelete(id)}
-          className="button is-danger is-light">
+          className="btn btn--secondary-light">
           ␡
         </button>
-      </p>
+      </div>
     </div>
   )
 }

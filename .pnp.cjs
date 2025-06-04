@@ -32,7 +32,6 @@ const RAW_RUNTIME_STATE =
           ["@types/node", "npm:22.15.29"],\
           ["@types/react", "npm:19.1.6"],\
           ["@types/react-dom", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:19.1.5"],\
-          ["bulma", "npm:1.0.4"],\
           ["copy-webpack-plugin", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:13.0.0"],\
           ["css-loader", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:7.1.2"],\
           ["currency-pwa", "workspace:."],\
@@ -1168,15 +1167,6 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
-    ["bulma", [\
-      ["npm:1.0.4", {\
-        "packageLocation": "./.yarn/cache/bulma-npm-1.0.4-dde5c31312-5d6cbbf95a.zip/node_modules/bulma/",\
-        "packageDependencies": [\
-          ["bulma", "npm:1.0.4"]\
-        ],\
-        "linkType": "HARD"\
-      }]\
-    ]],\
     ["bundle-name", [\
       ["npm:4.1.0", {\
         "packageLocation": "./.yarn/cache/bundle-name-npm-4.1.0-4688335533-1d966c8d2d.zip/node_modules/bundle-name/",\
@@ -1628,7 +1618,6 @@ const RAW_RUNTIME_STATE =
           ["@types/node", "npm:22.15.29"],\
           ["@types/react", "npm:19.1.6"],\
           ["@types/react-dom", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:19.1.5"],\
-          ["bulma", "npm:1.0.4"],\
           ["copy-webpack-plugin", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:13.0.0"],\
           ["css-loader", "virtual:14e981b71b23eb4fe4d8b56b68973fdc1a8fb8df5f47025bc7a9e7001ae6c589edbb9286024c74f63697801a41e4f628e06452f7cb495366c020894efaac0d09#npm:7.1.2"],\
           ["currency-pwa", "workspace:."],\

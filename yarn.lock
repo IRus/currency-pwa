@@ -909,13 +909,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bulma@npm:^1.0.4":
-  version: 1.0.4
-  resolution: "bulma@npm:1.0.4"
-  checksum: 10/5d6cbbf95a6b22ab151efcb02cb4d30faedcdcd2d7dafcf353dc06d281bbec044fe4de7cb397c42c549a1a338fb0441428eab73a936d794075ad4bf55efc69a5
-  languageName: node
-  linkType: hard
-
 "bundle-name@npm:^4.1.0":
   version: 4.1.0
   resolution: "bundle-name@npm:4.1.0"
@@ -1298,7 +1291,6 @@ __metadata:
     "@types/node": "npm:^22.15.29"
     "@types/react": "npm:^19.1.6"
     "@types/react-dom": "npm:^19.1.5"
-    bulma: "npm:^1.0.4"
     copy-webpack-plugin: "npm:^13.0.0"
     css-loader: "npm:^7.1.2"
     html-webpack-plugin: "npm:^5.6.3"

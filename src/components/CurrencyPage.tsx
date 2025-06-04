@@ -10,7 +10,7 @@ export function CurrencyPage({data}: {
   }
 }) {
   return (
-    <div className="container currencies-page">
+    <div className="container currency-page">
       <Currencies fixer={data.fixer}/>
       <Footer updated={data.updated}/>
     </div>

@@ -106,7 +106,7 @@ export function Currencies({fixer}: {
   }
 
   return (
-    <div className="box">
+    <div className="card">
       {data.map((row, idx) =>
         <Currency
           id={idx}
@@ -121,7 +121,7 @@ export function Currencies({fixer}: {
       )}
       <button
         onClick={addCurrency}
-        className="button add-currency">
+        className="btn btn--add-currency btn--full">
         Add currency
       </button>
     </div>

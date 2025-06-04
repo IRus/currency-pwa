@@ -1,75 +1,432 @@
+/* ==========================================================================
+   CSS Variables & Theming
+   ========================================================================== */
+
+/* Dark Theme */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #333;
-    --text-color: #fff;
-    --link-color: #0cf6ff;
-    --link-color-hover: #92f8ff;
+    /* Base Colors */
+    --color-background: #121212;
+    --color-surface: #1e1e1e;
+    --color-surface-variant: #2d2d2d;
+    --color-on-surface: #e1e1e1;
+    --color-on-surface-muted: #a0a0a0;
+    --color-border: #3d3d3d;
+    --color-shadow: rgba(0, 0, 0, 0.5);
+
+    /* Brand Colors */
+    --color-primary: #4cc9f0;
+    --color-primary-hover: #7dd8f3;
+    --color-primary-muted: rgba(76, 201, 240, 0.15);
+    --color-secondary: #f72585;
+    --color-secondary-hover: #f95fa5;
+    --color-secondary-muted: rgba(247, 37, 133, 0.15);
+    --color-success: #4ade80;
+    --color-success-hover: #86efac;
+    --color-success-muted: rgba(74, 222, 128, 0.15);
+    --color-link: #0cf6ff;
+    --color-link-hover: #92f8ff;
+
+    /* Form Elements */
+    --color-input-bg: #2a2a3c;
+    --color-input-border: #3d3d3d;
+    --color-input-focus-ring: rgba(76, 201, 240, 0.25);
   }
 }
 
+/* Light Theme */
 @media (prefers-color-scheme: light) {
   :root {
-    --background-color: rgba(198, 151, 239, 0.29);
-    --text-color: #555;
-    --link-color: #0c79ff;
-    --link-color-hover: #85bbff;
+    /* Base Colors */
+    --color-background: #f8f9fa;
+    --color-surface: #ffffff;
+    --color-surface-variant: #f0f0f0;
+    --color-on-surface: #212529;
+    --color-on-surface-muted: #6c757d;
+    --color-border: #dee2e6;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+
+    /* Brand Colors */
+    --color-primary: #3b82f6;
+    --color-primary-hover: #60a5fa;
+    --color-primary-muted: rgba(59, 130, 246, 0.15);
+    --color-secondary: #ef4444;
+    --color-secondary-hover: #f87171;
+    --color-secondary-muted: rgba(239, 68, 68, 0.15);
+    --color-success: #10b981;
+    --color-success-hover: #34d399;
+    --color-success-muted: rgba(16, 185, 129, 0.15);
+    --color-link: #0c79ff;
+    --color-link-hover: #85bbff;
+
+    /* Form Elements */
+    --color-input-bg: #ffffff;
+    --color-input-border: #ced4da;
+    --color-input-focus-ring: rgba(59, 130, 246, 0.25);
   }
+}
+
+/* ==========================================================================
+   Base Styles
+   ========================================================================== */
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Document */
+html {
+  font-size: 16px;
+  height: 100%;
 }
 
 body {
-  height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: var(--color-background);
+  color: var(--color-on-surface);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  background: var(--background-color);
-  color: var(--text-color);
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+p {
+  margin-bottom: 1rem;
 }
 
 a {
-  color: var(--link-color)
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--link-color-hover)
-}
-
-a:focus {
-}
-
-a:focus:not(:active) {
+  color: var(--color-link-hover);
 }
 
 a:active {
   text-decoration: underline;
 }
 
-.currencies-page {
-  padding: 20px;
+/* ==========================================================================
+   Layout Components
+   ========================================================================== */
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-.add-currency {
-  background-color: #ebfffc;
+/* Card */
+.card {
+  background-color: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--color-shadow);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 6px 16px var(--color-shadow);
+}
+
+/* Section */
+.section {
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   Form Components
+   ========================================================================== */
+
+/* Form Group */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group--inline {
+  display: flex;
+  align-items: stretch;
+}
+
+.form-group--inline > * {
+  flex: 1;
+}
+
+.form-group--inline > *:not(:last-child) {
+  margin-right: -1px;
+}
+
+.form-group--inline > *:first-child > * {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.form-group--inline > *:last-child > * {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-group--inline > *:not(:first-child):not(:last-child) > * {
+  border-radius: 0;
+}
+
+/* Form Control Wrapper */
+.form-control-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make the middle control (input field) take more space */
+.form-group--inline .form-control-wrapper:nth-child(2) {
+  flex: 3;
+}
+
+/* Select */
+.select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.select select {
+  appearance: none;
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-input-border);
+  border-radius: 8px;
+  color: var(--color-on-surface);
+  cursor: pointer;
+  display: block;
+  font-size: 1rem;
+  max-width: 100%;
+  outline: none;
+  padding: 0.625rem 2.5rem 0.625rem 0.875rem;
+  width: 100%;
+  height: 2.75rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.select select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-input-focus-ring);
+}
+
+.select::after {
+  border: 2px solid var(--color-on-surface-muted);
+  border-radius: 1px;
+  border-right: 0;
+  border-top: 0;
+  content: "";
+  display: block;
+  height: 0.625em;
+  pointer-events: none;
+  position: absolute;
+  right: 1.125em;
+  top: 50%;
+  transform: rotate(-45deg) translateY(-50%);
+  width: 0.625em;
+  transition: border-color 0.2s ease;
+}
+
+.select:hover::after {
+  border-color: var(--color-on-surface);
+}
+
+.select--primary select {
+  border-color: var(--color-primary);
+}
+
+/* Input */
+.input {
+  background-color: var(--color-input-bg);
+  border: 1px solid var(--color-input-border);
+  border-radius: 8px;
+  color: var(--color-on-surface);
+  display: block;
+  font-size: 1rem;
+  max-width: 100%;
+  outline: none;
+  padding: 0.625rem 0.875rem;
+  width: 100%;
+  height: 2.75rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-input-focus-ring);
+}
+
+.input--primary {
+  border-color: var(--color-primary);
+}
+
+/* Button */
+.btn {
+  background-color: var(--color-surface-variant);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  color: var(--color-on-surface);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  height: 2.75rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn:hover {
+  background-color: var(--color-primary-muted);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--color-input-focus-ring);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background-color: var(--color-primary);
   border-color: transparent;
-  color: #00947e;
+  color: white;
 }
 
-.add-currency:hover {
-  background-color: #defffa;
+.btn--primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn--secondary {
+  background-color: var(--color-secondary);
   border-color: transparent;
-  color: #00947e;
+  color: white;
 }
 
-.add-currency:focus {
+.btn--secondary:hover {
+  background-color: var(--color-secondary-hover);
+}
+
+.btn--secondary-light {
+  background-color: var(--color-secondary-muted);
   border-color: transparent;
+  color: var(--color-secondary);
 }
 
-.add-currency:focus:not(:active) {
-  box-shadow: 0 0 0 0.125em rgba(0, 209, 178, 0.25);
+.btn--secondary-light:hover {
+  background-color: var(--color-secondary-muted);
+  color: var(--color-secondary-hover);
 }
 
-.add-currency:active {
-  background-color: #d1fff8;
+.btn--ghost {
+  background-color: transparent;
   border-color: transparent;
-  color: #00947e;
+  color: var(--color-link);
+}
+
+.btn--ghost:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+.btn--small {
+  font-size: 0.875rem;
+  height: 2.25rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.btn--full {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+
+/* Text Alignment */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Spacing */
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 1rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mt-5 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.25rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 1rem; }
+.mb-4 { margin-bottom: 1.5rem; }
+.mb-5 { margin-bottom: 2rem; }
+
+/* ==========================================================================
+   App-Specific Components
+   ========================================================================== */
+
+/* Currency Page */
+.currency-page {
+  padding: 1.5rem;
+  width: 100%;
+}
+
+/* Add Currency Button */
+.btn--add-currency {
+  background-color: var(--color-success-muted);
+  border-color: transparent;
+  color: var(--color-success);
+  margin-top: 1.5rem;
+}
+
+.btn--add-currency:hover {
+  background-color: var(--color-success-muted);
+  border-color: var(--color-success);
+  color: var(--color-success-hover);
+}
+
+.btn--add-currency:focus {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+}
+
+.btn--add-currency:active {
+  background-color: var(--color-success-muted);
+  border-color: var(--color-success);
+  color: var(--color-success);
 }
