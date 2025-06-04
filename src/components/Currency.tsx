@@ -1,5 +1,6 @@
 import * as React from "react";
 import {Fixer} from "./Fixer";
+import {getCurrencyName} from "./CurrencyNames";
 
 export function Currency({id, fixer, currency, value, onDelete, update, selected}: {
   readonly id: number,
@@ -17,11 +18,11 @@ export function Currency({id, fixer, currency, value, onDelete, update, selected
           <select
             value={currency}
             onChange={event => update(id, event.target.value, value)}>
-            {Object.keys(fixer).map((currency, idx) =>
+            {Object.keys(fixer).map((currencyOption, idx) =>
               <option
                 key={idx}
-                value={currency}>
-                {currency}
+                value={currencyOption}>
+                {getCurrencyName(currencyOption, currencyOption !== currency)}
               </option>
             )}
           </select>
