@@ -10,7 +10,6 @@
     --color-surface: #1e1e1e;
     --color-surface-variant: #2d2d2d;
     --color-on-surface: #e1e1e1;
-    --color-on-surface-muted: #a0a0a0;
     --color-border: #3d3d3d;
     --color-shadow: rgba(0, 0, 0, 0.5);
 
@@ -42,7 +41,6 @@
     --color-surface: #ffffff;
     --color-surface-variant: #f0f0f0;
     --color-on-surface: #212529;
-    --color-on-surface-muted: #6c757d;
     --color-border: #dee2e6;
     --color-shadow: rgba(0, 0, 0, 0.1);
 
@@ -178,6 +176,7 @@ a:active {
 .form-group--inline > *:first-child > .select > select {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
+  width: 6rem; /* Fixed width to fit 3 uppercase letters */
 }
 
 .form-group--inline > *:last-child > * {
@@ -231,7 +230,7 @@ a:active {
 }
 
 .select::after {
-  border: 2px solid var(--color-on-surface-muted);
+  border: 2px solid var(--color-primary);
   border-radius: 1px;
   border-right: 0;
   border-top: 0;
@@ -241,7 +240,7 @@ a:active {
   pointer-events: none;
   position: absolute;
   right: 1.125em;
-  top: 50%;
+  top: 45%;
   transform: rotate(-45deg) translateY(-50%);
   width: 0.625em;
   transition: border-color 0.2s ease;
