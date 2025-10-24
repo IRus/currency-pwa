@@ -56,26 +56,50 @@ self.addEventListener('activate', function(event) {
   );
 });
 
+// Helper function to strip query parameters from URLs for cache matching
+function stripQueryParams(url) {
+  return url.split('?')[0];
+}
+
 self.addEventListener("fetch", function (event) {
   if (event.request.method !== "GET") return;
 
+  const requestUrl = new URL(event.request.url);
+  const cleanUrl = stripQueryParams(requestUrl.href);
+
   // For HTML and JSON files, use stale-while-revalidate strategy
-  if (event.request.url.includes('/currency/index.html') ||
-      event.request.url.includes('/currency/data.json')) {
+  if (cleanUrl.includes('/currency/index.html') ||
+      cleanUrl.includes('/currency/data.json')) {
     event.respondWith(
       staleWhileRevalidate(event.request)
     );
     return;
   }
 
-  // For pre-cached assets, try the cache first
-  if (PRECACHE_ASSETS.some(asset => event.request.url.includes(asset))) {
+  // For pre-cached assets, try the cache first (ignoring query parameters)
+  if (PRECACHE_ASSETS.some(asset => cleanUrl.endsWith(asset) || cleanUrl.includes(asset))) {
     event.respondWith(
       caches.open(ASSETS_CACHE_NAME).then(function(cache) {
+        // Try to match with query params first, then without
         return cache.match(event.request).then(function(response) {
-          return response || fetch(event.request).then(function(networkResponse) {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
+          if (response) return response;
+
+          // Try matching without query parameters
+          return cache.match(cleanUrl).then(function(cleanResponse) {
+            if (cleanResponse) return cleanResponse;
+
+            // Fetch from network and cache
+            return fetch(event.request).then(function(networkResponse) {
+              // Only cache successful responses
+              if (networkResponse && networkResponse.status === 200) {
+                cache.put(event.request, networkResponse.clone());
+              }
+              return networkResponse;
+            }).catch(function(error) {
+              console.log("[PWA Builder] Failed to fetch asset:", error);
+              // Return a meaningful error for debugging
+              throw error;
+            });
           });
         });
       })
