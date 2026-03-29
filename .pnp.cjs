@@ -3443,10 +3443,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["node-forge", [\
-      ["npm:1.3.2", {\
-        "packageLocation": "./.yarn/cache/node-forge-npm-1.3.2-39b26c0214-dcc54aaffe.zip/node_modules/node-forge/",\
+      ["npm:1.4.0", {\
+        "packageLocation": "./.yarn/cache/node-forge-npm-1.4.0-646822c506-d70fd76976.zip/node_modules/node-forge/",\
         "packageDependencies": [\
-          ["node-forge", "npm:1.3.2"]\
+          ["node-forge", "npm:1.4.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4292,7 +4292,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/selfsigned-npm-2.4.1-1ca1b883c5-52536623f1.zip/node_modules/selfsigned/",\
         "packageDependencies": [\
           ["@types/node-forge", "npm:1.3.11"],\
-          ["node-forge", "npm:1.3.2"],\
+          ["node-forge", "npm:1.4.0"],\
           ["selfsigned", "npm:2.4.1"]\
         ],\
         "linkType": "HARD"\
