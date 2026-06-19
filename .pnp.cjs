@@ -3287,11 +3287,11 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["launch-editor", [\
-      ["npm:2.10.0", {\
-        "packageLocation": "./.yarn/cache/launch-editor-npm-2.10.0-b8c7801dfe-2ef26369d8.zip/node_modules/launch-editor/",\
+      ["npm:2.14.1", {\
+        "packageLocation": "./.yarn/cache/launch-editor-npm-2.14.1-72c53f4965-335d12ca43.zip/node_modules/launch-editor/",\
         "packageDependencies": [\
-          ["launch-editor", "npm:2.10.0"],\
-          ["picocolors", "npm:1.0.0"],\
+          ["launch-editor", "npm:2.14.1"],\
+          ["picocolors", "npm:1.1.1"],\
           ["shell-quote", "npm:1.8.4"]\
         ],\
         "linkType": "HARD"\
@@ -3976,13 +3976,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["picocolors", [\
-      ["npm:1.0.0", {\
-        "packageLocation": "./.yarn/cache/picocolors-npm-1.0.0-d81e0b1927-a2e8092dd8.zip/node_modules/picocolors/",\
-        "packageDependencies": [\
-          ["picocolors", "npm:1.0.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:1.1.1", {\
         "packageLocation": "./.yarn/cache/picocolors-npm-1.1.1-4fede47cf1-e1cf46bf84.zip/node_modules/picocolors/",\
         "packageDependencies": [\
@@ -5575,7 +5568,7 @@ const RAW_RUNTIME_STATE =
           ["graceful-fs", "npm:4.2.6"],\
           ["http-proxy-middleware", "virtual:2807680f1102e425faa444d1aba0c052d7cba9612f5184d7408ff28123640c9457f8b821d3b852dfdc6af7d2b644361ba56203b3af9b1c6776e8e914793ced06#npm:2.0.9"],\
           ["ipaddr.js", "npm:2.2.0"],\
-          ["launch-editor", "npm:2.10.0"],\
+          ["launch-editor", "npm:2.14.1"],\
           ["open", "npm:10.1.2"],\
           ["p-retry", "npm:6.2.1"],\
           ["schema-utils", "npm:4.2.0"],\
