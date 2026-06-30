@@ -2888,20 +2888,20 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["http-proxy-middleware", [\
-      ["npm:2.0.9", {\
-        "packageLocation": "./.yarn/cache/http-proxy-middleware-npm-2.0.9-c1f4ed8c4d-4ece416a91.zip/node_modules/http-proxy-middleware/",\
+      ["npm:2.0.10", {\
+        "packageLocation": "./.yarn/cache/http-proxy-middleware-npm-2.0.10-2b15026740-efa8b5d4de.zip/node_modules/http-proxy-middleware/",\
         "packageDependencies": [\
-          ["http-proxy-middleware", "npm:2.0.9"]\
+          ["http-proxy-middleware", "npm:2.0.10"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:c96ac846febec07176d6cb014b0436e230473b62c60c7a13c992c0127c16ef0173d1a9235a52333b23b31e704e027155b4cde30b3ebbfbb47d6ea22574fd0862#npm:2.0.9", {\
-        "packageLocation": "./.yarn/__virtual__/http-proxy-middleware-virtual-c77cf64eb1/0/cache/http-proxy-middleware-npm-2.0.9-c1f4ed8c4d-4ece416a91.zip/node_modules/http-proxy-middleware/",\
+      ["virtual:c96ac846febec07176d6cb014b0436e230473b62c60c7a13c992c0127c16ef0173d1a9235a52333b23b31e704e027155b4cde30b3ebbfbb47d6ea22574fd0862#npm:2.0.10", {\
+        "packageLocation": "./.yarn/__virtual__/http-proxy-middleware-virtual-7313e4ed4a/0/cache/http-proxy-middleware-npm-2.0.10-2b15026740-efa8b5d4de.zip/node_modules/http-proxy-middleware/",\
         "packageDependencies": [\
           ["@types/express", "npm:4.17.25"],\
           ["@types/http-proxy", "npm:1.17.14"],\
           ["http-proxy", "npm:1.18.1"],\
-          ["http-proxy-middleware", "virtual:c96ac846febec07176d6cb014b0436e230473b62c60c7a13c992c0127c16ef0173d1a9235a52333b23b31e704e027155b4cde30b3ebbfbb47d6ea22574fd0862#npm:2.0.9"],\
+          ["http-proxy-middleware", "virtual:c96ac846febec07176d6cb014b0436e230473b62c60c7a13c992c0127c16ef0173d1a9235a52333b23b31e704e027155b4cde30b3ebbfbb47d6ea22574fd0862#npm:2.0.10"],\
           ["is-glob", "npm:4.0.1"],\
           ["is-plain-obj", "npm:3.0.0"],\
           ["micromatch", "npm:4.0.8"]\
@@ -5566,7 +5566,7 @@ const RAW_RUNTIME_STATE =
           ["connect-history-api-fallback", "npm:2.0.0"],\
           ["express", "npm:4.22.2"],\
           ["graceful-fs", "npm:4.2.6"],\
-          ["http-proxy-middleware", "virtual:c96ac846febec07176d6cb014b0436e230473b62c60c7a13c992c0127c16ef0173d1a9235a52333b23b31e704e027155b4cde30b3ebbfbb47d6ea22574fd0862#npm:2.0.9"],\
+          ["http-proxy-middleware", "virtual:c96ac846febec07176d6cb014b0436e230473b62c60c7a13c992c0127c16ef0173d1a9235a52333b23b31e704e027155b4cde30b3ebbfbb47d6ea22574fd0862#npm:2.0.10"],\
           ["ipaddr.js", "npm:2.2.0"],\
           ["launch-editor", "npm:2.14.1"],\
           ["open", "npm:10.1.2"],\
