@@ -2,7 +2,7 @@ import * as React from "react";
 import {useEffect, useState} from "react";
 import {Currency} from "./Currency";
 import {Fixer} from "./Fixer";
-import {normalize} from "./Normalize";
+import {convert, Row, sanitizeRows} from "./convert";
 
 const defaultCurrencies: Data = [
   {
@@ -18,11 +18,7 @@ const defaultCurrencies: Data = [
   }
 ];
 
-type Data = Array<{
-  currency: string;
-  value: string;
-  selected?: boolean;
-}>;
+type Data = Array<Row>;
 
 export function Currencies({fixer}: {
   readonly fixer: Fixer
@@ -30,41 +26,33 @@ export function Currencies({fixer}: {
   const [data, setData] = useState<Data>([]);
 
   useEffect(() => {
-    if (data.length !== 0) return;
-    function setDefault() {
-      changeData(defaultCurrencies, 0)
-    }
-
     try {
       const item = localStorage.getItem("currency_data");
-      const settings: Data = JSON.parse(item ?? "[]")
-      if (settings.length === 0) {
-        setDefault()
-      }  else {
-        changeData(settings, 0)
-      }
+      const stored = sanitizeRows(JSON.parse(item ?? "[]"), fixer);
+      changeData(stored.length === 0 ? defaultCurrencies : stored, 0);
     } catch (e) {
       console.error(e);
-      setDefault()
+      changeData(defaultCurrencies, 0);
     }
   }, []);
 
   function changeData(newData: Data, id: number) {
     const fromCurrency = newData[id].currency;
-    const normalizedValue = normalize(newData[id].value);
+    const rawValue = newData[id].value;
 
     const reconciledData: Data = newData.map((row, idx) => {
       if (id === idx) {
+        // The edited row keeps exactly what was typed. Rewriting it mid-edit is
+        // what turned "0.5" into "" -> "." -> NaN on the way through.
         return {
           currency: row.currency,
-          value: normalizedValue === "0" ? "" : newData[id].value,
+          value: rawValue,
           selected: true
         };
       } else {
-        const amountCurrency = (Number(normalizedValue) / (fixer[fromCurrency] / fixer[row.currency])).toFixed(2)
         return {
           currency: row.currency,
-          value: amountCurrency
+          value: convert(rawValue, fromCurrency, row.currency, fixer)
         };
       }
     });
@@ -81,11 +69,11 @@ export function Currencies({fixer}: {
   function addCurrency() {
     const preferredCurrencies = ["USD", "EUR", "BYN", "PLN", "DKK", "SEK", "GEL"];
     const usedCurrencies = data.map(item => item.currency);
-    const availableCurrency = preferredCurrencies.find(currency => !usedCurrencies.includes(currency));// If all preferred currencies are in use, use a random currency from the fixer object
-    const newCurrency = availableCurrency ||
-      Object.keys(fixer).filter(currency => !usedCurrencies.includes(currency))[
-        Math.floor(Math.random() * (Object.keys(fixer).length - usedCurrencies.length))
-      ] || "USD";
+    const available = Object.keys(fixer).filter(currency => !usedCurrencies.includes(currency));
+
+    const newCurrency = preferredCurrencies.find(currency => available.includes(currency)) ??
+      available[Math.floor(Math.random() * available.length)] ??
+      "USD";
 
     changeData([...data, {currency: newCurrency, value: ""}], 0);
   }
@@ -98,9 +86,9 @@ export function Currencies({fixer}: {
   }
 
   function update(id: number, fromCurrency: string, value: string) {
-    const dataCopy = [...data];
-    dataCopy[id].currency = fromCurrency;
-    dataCopy[id].value = value;
+    const dataCopy = data.map((row, idx) =>
+      idx === id ? {...row, currency: fromCurrency, value} : row
+    );
 
     changeData(dataCopy, id);
   }
@@ -120,6 +108,7 @@ export function Currencies({fixer}: {
         />
       )}
       <button
+        type="button"
         onClick={addCurrency}
         className="btn btn--add-currency btn--full">
         Add currency

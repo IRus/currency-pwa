@@ -1,4 +1,4 @@
-const inputLookup = {
+const inputLookup: Record<string, string | number> = {
   0: 0,
   1: 1,
   2: 2,
