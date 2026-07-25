@@ -170,7 +170,3 @@ export const currencyNames: Record<string, string> = {
   "ZMW": "Zambian Kwacha",
   "ZWL": "Zimbabwean Dollar",
 };
-
-export function getCurrencyName(code: string, displayFull: boolean): string {
-  return (displayFull && currencyNames[code]) ? `${code} - ${currencyNames[code]}` : code;
-}

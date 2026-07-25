@@ -1,10 +1,9 @@
 import * as React from "react";
-import {Fixer} from "./Fixer";
-import {getCurrencyName} from "./CurrencyNames";
+import {CurrencyCombobox} from "./CurrencyCombobox";
 
-export function Currency({id, fixer, currency, value, onDelete, update, selected}: {
+export function Currency({id, currencies, currency, value, onDelete, update, selected}: {
   readonly id: number,
-  readonly fixer: Fixer
+  readonly currencies: ReadonlyArray<string>,
   readonly currency: string,
   readonly value: string,
   readonly onDelete: (id: number) => void,
@@ -14,20 +13,13 @@ export function Currency({id, fixer, currency, value, onDelete, update, selected
   return (
     <div className="form-group form-group--inline">
       <div className="form-control-wrapper">
-        <div className={selected ? "select select--primary" : "select"}>
-          <select
-            aria-label={`Currency for row ${id + 1}`}
-            value={currency}
-            onChange={event => update(id, event.target.value, value)}>
-            {Object.keys(fixer).map((currencyOption, idx) =>
-              <option
-                key={idx}
-                value={currencyOption}>
-                {getCurrencyName(currencyOption, currencyOption !== currency)}
-              </option>
-            )}
-          </select>
-        </div>
+        <CurrencyCombobox
+          id={id}
+          currencies={currencies}
+          currency={currency}
+          selected={selected}
+          onChange={picked => update(id, picked, value)}
+        />
       </div>
       <div className="form-control-wrapper">
         <input

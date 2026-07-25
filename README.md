@@ -3,7 +3,9 @@
 PWA currency converter
 
 * Exchange rates updates every day, by cron on Github Actions
-* fixer.io used as rates source
+* Three rate sources to pick between: fixer.io, the National Bank of the
+  Republic of Belarus and the Deutsche Bundesbank
+* Currencies are picked by typing — by code, by name, accents optional
 
 ## Development
 
@@ -18,9 +20,34 @@ pnpm build                                           # production build into dis
 
 `src/data.json` is generated, not committed. The rates are compiled into the
 bundle, so the app makes no network requests at runtime — that is what lets it
-work offline. `generate-currencies.js` exits non-zero and leaves the previous
-file untouched if fixer.io answers with anything unexpected, including the
-HTTP 200 + `{"success": false}` it uses for quota and auth failures.
+work offline.
+
+## Rate sources
+
+Every source is one entry in `SOURCES` in `generate-currencies.js`: a name, a
+URL and a parser that turns whatever that endpoint answers with into "units of
+X per 1 unit of the source's base". Only ratios ever reach the app, so which
+base a source anchored on stops mattering once its table is built. Adding a
+fourth source means adding a fourth entry; the switch in the UI grows a segment
+on its own.
+
+| Source | Base | Currencies | Key |
+| --- | --- | --- | --- |
+| [fixer.io](https://data.fixer.io/) | EUR | ~170 | `FIXER_IO_TOKEN` |
+| [NBRB](https://api.nbrb.by/) | BYN | ~30 | none |
+| [Bundesbank](https://api.statistiken.bundesbank.de/) | EUR | ~30 | none |
+
+Each table is validated on its own — a plausible currency count and the codes
+the app opens with — and a source that fails validation is left out. fixer.io is
+marked `required`, so losing it exits non-zero and leaves the previous file
+untouched rather than shipping a converter that cannot price most currencies;
+that covers the HTTP 200 + `{"success": false}` fixer.io uses for quota and auth
+failures. The other two are best-effort: an endpoint that is down for an
+afternoon costs the switch one segment.
+
+Sources disagree, and that is the point of offering them: the National Bank's
+official rate is not the rate the market cleared at. The date under the card is
+the day the rates are *for*, taken from the source, not the day the build ran.
 
 Vite does not type-check while bundling, so `pnpm typecheck` is a separate step
 and runs in CI alongside the tests.

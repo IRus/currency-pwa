@@ -1,40 +1,36 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {Currency} from "./Currency";
-import {Fixer} from "./Fixer";
+import {Rates} from "./Rates";
 import {convert, Row, sanitizeRows} from "./convert";
-
-const defaultCurrencies: Data = [
-  {
-    currency: "USD",
-    value: "1",
-    selected: true
-  }, {
-    currency: "EUR",
-    value: "0"
-  }, {
-    currency: "BYN",
-    value: "0"
-  }
-];
 
 type Data = Array<Row>;
 
-export function Currencies({fixer}: {
-  readonly fixer: Fixer
+const preferredCurrencies = ["USD", "EUR", "BYN", "PLN", "DKK", "SEK", "GEL"];
+
+export function Currencies({rates}: {
+  readonly rates: Rates
 }) {
   const [data, setData] = useState<Data>([]);
 
+  const currencies = useMemo(() => Object.keys(rates), [rates]);
+
+  // Runs again whenever the table changes, which is how switching sources is
+  // absorbed: the rows are re-read, the ones the new source cannot price are
+  // dropped, and the rest are re-converted at its rates.
   useEffect(() => {
     try {
       const item = localStorage.getItem("currency_data");
-      const stored = sanitizeRows(JSON.parse(item ?? "[]"), fixer);
-      changeData(stored.length === 0 ? defaultCurrencies : stored, 0);
+      const stored = sanitizeRows(JSON.parse(item ?? "[]"), rates);
+      const rows = stored.length === 0 ? defaultRows(rates) : stored;
+      // Driving from the row the user was last in, so switching sources leaves
+      // the amount they typed where they typed it.
+      changeData(rows, Math.max(rows.findIndex(row => row.selected), 0));
     } catch (e) {
       console.error(e);
-      changeData(defaultCurrencies, 0);
+      changeData(defaultRows(rates), 0);
     }
-  }, []);
+  }, [rates]);
 
   function changeData(newData: Data, id: number) {
     const fromCurrency = newData[id].currency;
@@ -52,7 +48,7 @@ export function Currencies({fixer}: {
       } else {
         return {
           currency: row.currency,
-          value: convert(rawValue, fromCurrency, row.currency, fixer)
+          value: convert(rawValue, fromCurrency, row.currency, rates)
         };
       }
     });
@@ -67,13 +63,12 @@ export function Currencies({fixer}: {
   }
 
   function addCurrency() {
-    const preferredCurrencies = ["USD", "EUR", "BYN", "PLN", "DKK", "SEK", "GEL"];
     const usedCurrencies = data.map(item => item.currency);
-    const available = Object.keys(fixer).filter(currency => !usedCurrencies.includes(currency));
+    const available = currencies.filter(currency => !usedCurrencies.includes(currency));
 
     const newCurrency = preferredCurrencies.find(currency => available.includes(currency)) ??
       available[Math.floor(Math.random() * available.length)] ??
-      "USD";
+      currencies[0];
 
     changeData([...data, {currency: newCurrency, value: ""}], 0);
   }
@@ -99,7 +94,7 @@ export function Currencies({fixer}: {
         <Currency
           id={idx}
           key={idx}
-          fixer={fixer}
+          currencies={currencies}
           currency={row.currency}
           value={row.value ?? "0"}
           selected={row.selected ?? false}
@@ -115,4 +110,20 @@ export function Currencies({fixer}: {
       </button>
     </div>
   )
+}
+
+/**
+ * What the app opens with, and what it falls back to when the stored rows are
+ * unreadable. A source that does not quote one of them simply contributes
+ * fewer rows — the Bundesbank has no Belarusian ruble.
+ */
+function defaultRows(rates: Rates): Data {
+  const available = ["USD", "EUR", "BYN"].filter(currency => rates[currency] !== undefined);
+  const currencies = available.length === 0 ? Object.keys(rates).slice(0, 3) : available;
+
+  return currencies.map((currency, idx) => ({
+    currency: currency,
+    value: idx === 0 ? "1" : "0",
+    selected: idx === 0
+  }));
 }

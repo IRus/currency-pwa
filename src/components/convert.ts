@@ -1,4 +1,4 @@
-import {Fixer} from "./Fixer";
+import {Rates} from "./Rates";
 import {normalize} from "./Normalize";
 
 export type Row = {
@@ -15,9 +15,9 @@ export type Row = {
  * reach the DOM and localStorage as the literal string "NaN", which then
  * survived every reload because normalize("NaN") is "" rather than "0".
  */
-export function convert(value: string, from: string, to: string, fixer: Fixer): string {
-  const fromRate = fixer[from];
-  const toRate = fixer[to];
+export function convert(value: string, from: string, to: string, rates: Rates): string {
+  const fromRate = rates[from];
+  const toRate = rates[to];
 
   if (!isUsableRate(fromRate) || !isUsableRate(toRate)) return "";
 
@@ -28,15 +28,16 @@ export function convert(value: string, from: string, to: string, fixer: Fixer): 
 }
 
 /**
- * Drops rows that today's rates can no longer price. Rates are regenerated
- * daily and fixer.io adds and removes codes, so a currency saved months ago may
- * simply not exist any more.
+ * Drops rows the given table can no longer price. Rates are regenerated daily
+ * and sources add and remove codes, so a currency saved months ago may simply
+ * not exist any more — and switching sources swaps a table of 170 currencies
+ * for one of 30, which retires most of them at once.
  */
-export function sanitizeRows(stored: unknown, fixer: Fixer): Array<Row> {
+export function sanitizeRows(stored: unknown, rates: Rates): Array<Row> {
   if (!Array.isArray(stored)) return [];
 
   return stored
-    .filter(row => row != null && isUsableRate(fixer[row.currency]))
+    .filter(row => row != null && isUsableRate(rates[row.currency]))
     .map(row => ({
       currency: row.currency as string,
       value: typeof row.value === "string" && row.value !== "NaN" ? row.value : "",
