@@ -34,7 +34,6 @@ export function Currency({id, fixer, currency, value, onDelete, update, selected
           className={selected ? "input input--primary" : "input"}
           type="text"
           inputMode="decimal"
-          placeholder=""
           aria-label={`Amount in ${currency}`}
           value={value}
           autoFocus={selected}
@@ -51,7 +50,7 @@ export function Currency({id, fixer, currency, value, onDelete, update, selected
           aria-label={`Remove ${currency}`}
           onClick={() => onDelete(id)}
           className="btn btn--secondary-light">
-          ␡
+          ×
         </button>
       </div>
     </div>

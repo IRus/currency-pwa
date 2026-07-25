@@ -1,81 +1,75 @@
 /* ==========================================================================
-   CSS Variables & Theming
+   Tokens
+
+   One amount refracts into several, so the interface is built out of glass:
+   a slab lit from behind, with the row you are driving lifted out of it.
    ========================================================================== */
 
-/* Dark Theme */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Base Colors */
-    --color-background: #121212;
-    --color-surface: #1e1e1e;
-    --color-surface-variant: #2d2d2d;
-    --color-on-surface: #e1e1e1;
-    --color-border: #3d3d3d;
-    --color-shadow: rgba(0, 0, 0, 0.5);
+:root {
+  color-scheme: dark light;
 
-    /* Brand Colors */
-    --color-primary: #4cc9f0;
-    --color-primary-hover: #7dd8f3;
-    --color-primary-muted: rgba(76, 201, 240, 0.15);
-    --color-secondary: #f72585;
-    --color-secondary-hover: #f95fa5;
-    --color-secondary-muted: rgba(247, 37, 133, 0.15);
-    --color-success: #4ade80;
-    --color-success-hover: #86efac;
-    --color-success-muted: rgba(74, 222, 128, 0.15);
-    --color-link: #0cf6ff;
-    --color-link-hover: #92f8ff;
+  --void: #06060b;
+  --bloom-a: #4338ca;
+  --bloom-b: #0891b2;
+  --bloom-c: #b45309;
 
-    /* Form Elements */
-    --color-input-bg: #2a2a3c;
-    --color-input-border: #3d3d3d;
-    --color-input-focus-ring: rgba(76, 201, 240, 0.25);
-  }
+  --glass: rgba(255, 255, 255, 0.055);
+  --glass-raised: rgba(255, 255, 255, 0.1);
+  --glass-well: rgba(255, 255, 255, 0.022);
+  --rim-hi: rgba(255, 255, 255, 0.5);
+  --rim-lo: rgba(255, 255, 255, 0.04);
+  --hairline: rgba(255, 255, 255, 0.08);
+
+  --ink: #f4f4f7;
+  --ink-soft: rgba(244, 244, 247, 0.74);
+  --ink-dim: rgba(244, 244, 247, 0.5);
+  --ink-faint: rgba(244, 244, 247, 0.38);
+
+  --accent: #7dd3fc;
+  --accent-glow: rgba(125, 211, 252, 0.28);
+  --danger: #fda4af;
+
+  --radius-slab: 30px;
+  --radius-row: 20px;
+  --blur: 28px;
 }
 
-/* Light Theme */
 @media (prefers-color-scheme: light) {
   :root {
-    /* Base Colors */
-    --color-background: #f8f9fa;
-    --color-surface: #ffffff;
-    --color-surface-variant: #f0f0f0;
-    --color-on-surface: #212529;
-    --color-border: #dee2e6;
-    --color-shadow: rgba(0, 0, 0, 0.1);
+    --void: #dfe5f0;
+    --bloom-a: #818cf8;
+    --bloom-b: #38bdf8;
+    --bloom-c: #fb923c;
 
-    /* Brand Colors */
-    --color-primary: #3b82f6;
-    --color-primary-hover: #60a5fa;
-    --color-primary-muted: rgba(59, 130, 246, 0.15);
-    --color-secondary: #ef4444;
-    --color-secondary-hover: #f87171;
-    --color-secondary-muted: rgba(239, 68, 68, 0.15);
-    --color-success: #10b981;
-    --color-success-hover: #34d399;
-    --color-success-muted: rgba(16, 185, 129, 0.15);
-    --color-link: #0c79ff;
-    --color-link-hover: #85bbff;
+    --glass: rgba(255, 255, 255, 0.34);
+    --glass-raised: rgba(255, 255, 255, 0.72);
+    /* A recess in a light surface reads darker, not whiter. */
+    --glass-well: rgba(16, 16, 24, 0.035);
+    --rim-hi: rgba(255, 255, 255, 0.95);
+    --rim-lo: rgba(16, 16, 24, 0.06);
+    --hairline: rgba(16, 16, 24, 0.1);
 
-    /* Form Elements */
-    --color-input-bg: #ffffff;
-    --color-input-border: #ced4da;
-    --color-input-focus-ring: rgba(59, 130, 246, 0.25);
+    --ink: #0d0d14;
+    --ink-soft: rgba(13, 13, 20, 0.72);
+    --ink-dim: rgba(13, 13, 20, 0.55);
+    --ink-faint: rgba(13, 13, 20, 0.42);
+
+    --accent: #2563eb;
+    --accent-glow: rgba(37, 99, 235, 0.2);
+    --danger: #e11d48;
   }
 }
 
 /* ==========================================================================
-   Base Styles
+   Base
    ========================================================================== */
 
-/* Reset */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Document */
 html {
   font-size: 16px;
   height: 100%;
@@ -86,347 +80,360 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background: var(--color-background);
-  color: var(--color-on-surface);
+  padding: 1.25rem;
+  font-family: system-ui, -apple-system, "Segoe UI Variable", "Segoe UI", Roboto, sans-serif;
+  background: var(--void);
+  color: var(--ink);
   line-height: 1.5;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: 0.5em;
-  font-weight: 600;
-  line-height: 1.2;
+/* The light the glass has to bend. Without something behind it, a glass
+   surface is just a grey rectangle. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -25%;
+  z-index: -1;
+  /* Placed to sit behind the slab rather than around it. Glass over an empty
+     background is just a grey rectangle; it needs light to bend. */
+  background:
+    radial-gradient(46% 40% at 30% 40%, var(--bloom-a) 0%, transparent 72%),
+    radial-gradient(48% 42% at 72% 48%, var(--bloom-b) 0%, transparent 74%),
+    radial-gradient(26% 22% at 60% 20%, var(--bloom-c) 0%, transparent 68%);
+  opacity: 0.6;
+  filter: blur(30px);
+  animation: drift 44s ease-in-out infinite alternate;
 }
 
-p {
-  margin-bottom: 1rem;
+@media (prefers-color-scheme: light) {
+  body::before { opacity: 0.75; }
+}
+
+@keyframes drift {
+  from { transform: translate3d(-3%, -2%, 0) scale(1); }
+  to   { transform: translate3d(3%, 2%, 0) scale(1.12); }
 }
 
 a {
-  color: var(--color-link);
+  color: inherit;
   text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: var(--color-link-hover);
-}
-
-a:active {
-  text-decoration: underline;
 }
 
 /* ==========================================================================
-   Layout Components
+   Layout
    ========================================================================== */
 
-/* Container */
 .container {
   width: 100%;
-  max-width: 600px;
+  max-width: 26rem;
   margin: 0 auto;
-  padding: 0 1rem;
 }
 
-/* Card */
+.currency-page {
+  animation: rise 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* The slab */
 .card {
-  background-color: var(--color-surface);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px var(--color-shadow);
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  padding: 0.75rem;
+  border-radius: var(--radius-slab);
+  background: var(--glass);
+  backdrop-filter: blur(var(--blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(180%);
+  box-shadow:
+    0 32px 60px -20px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 var(--rim-hi),
+    inset 0 -1px 0 var(--rim-lo);
 }
 
-.card:hover {
-  box-shadow: 0 6px 16px var(--color-shadow);
+/* The lit edge. A thick pane catches light along its rim, and that rim is
+   what separates glass from a frosted overlay. */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(150deg, var(--rim-hi), transparent 38%, transparent 62%, var(--rim-lo));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
-/* Section */
-.section {
-  margin-bottom: 2rem;
+/* Specular bloom where the light lands on the surface */
+.card::after {
+  content: "";
+  position: absolute;
+  top: -12%;
+  left: 6%;
+  width: 46%;
+  height: 42%;
+  border-radius: 50%;
+  background: var(--rim-hi);
+  opacity: 0.14;
+  filter: blur(26px);
+  pointer-events: none;
 }
 
 /* ==========================================================================
-   Form Components
+   Currency rows
    ========================================================================== */
 
-/* Form Group */
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 0.375rem;
 }
 
 .form-group--inline {
+  position: relative;
   display: flex;
-  align-items: stretch;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.875rem;
+  border-radius: var(--radius-row);
+  background: var(--glass-well);
+  box-shadow:
+    inset 0 0 0 1px var(--hairline),
+    inset 0 1px 2px rgba(0, 0, 0, 0.14);
+  transition: background 260ms ease, box-shadow 260ms ease, transform 260ms ease;
 }
 
-.form-group--inline > * {
-  flex: 1;
+/* Signature: the row driving the conversion lifts out of the slab, catches a
+   rim light, and glows underneath. Every other row stays recessed. */
+.form-group--inline:has(.input--primary) {
+  background: var(--glass-raised);
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 26px -10px var(--accent-glow),
+    0 2px 10px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 var(--rim-hi),
+    inset 0 -1px 0 var(--rim-lo);
 }
 
-.form-group--inline > *:not(:last-child) {
-  margin-right: -1px;
+/* The controls inside a row are borderless, so keyboard focus is shown on the
+   capsule that holds them. */
+.form-group--inline:has(:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
-.form-group--inline > *:first-child > *,
-.form-group--inline > *:first-child > .select > select {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  width: 6rem; /* Fixed width to fit 3 uppercase letters */
+/* One sweep of light when a row becomes the active one */
+.form-group--inline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(105deg, transparent 30%, var(--rim-hi) 50%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
 }
 
-.form-group--inline > *:last-child > * {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+.form-group--inline:has(.input--primary)::after {
+  animation: sweep 820ms cubic-bezier(0.32, 0.72, 0.35, 1);
 }
 
-.form-group--inline > *:not(:first-child):not(:last-child) > * {
-  border-radius: 0;
+@keyframes sweep {
+  from { opacity: 0; transform: translateX(-70%); }
+  35%  { opacity: 0.34; }
+  to   { opacity: 0; transform: translateX(70%); }
 }
 
-/* Form Control Wrapper */
 .form-control-wrapper {
   position: relative;
   display: flex;
-  flex-direction: column;
 }
 
-/* Make the middle control (input field) take more space */
-.form-group--inline .form-control-wrapper:nth-child(2) {
-  flex: 3;
-}
+/* currency code | amount | remove */
+.form-group--inline > .form-control-wrapper:nth-child(1) { flex: 0 0 5rem; }
+.form-group--inline > .form-control-wrapper:nth-child(2) { flex: 1 1 auto; min-width: 0; }
+.form-group--inline > .form-control-wrapper:nth-child(3) { flex: 0 0 auto; margin-left: 0.5rem; }
 
-/* Select */
+/* ==========================================================================
+   Controls
+   ========================================================================== */
+
 .select {
   position: relative;
-  display: inline-block;
   width: 100%;
 }
 
 .select select {
   appearance: none;
-  background-color: var(--color-input-bg);
-  border: 1px solid var(--color-input-border);
-  border-radius: 8px;
-  color: var(--color-on-surface);
-  cursor: pointer;
-  display: block;
-  font-size: 1rem;
-  max-width: 100%;
-  outline: none;
-  padding: 0.625rem 2.5rem 0.625rem 0.875rem;
   width: 100%;
-  height: 2.75rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  padding: 0.375rem 1rem 0.375rem 0;
+  border: 0;
+  background: none;
+  color: var(--ink-dim);
+  font: inherit;
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  transition: color 200ms ease;
 }
 
-.select select:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-input-focus-ring);
-}
+.select select:hover { color: var(--ink); }
+
+.select--primary select { color: var(--ink); }
 
 .select::after {
-  border: 2px solid var(--color-primary);
-  border-radius: 1px;
-  border-right: 0;
-  border-top: 0;
   content: "";
-  display: block;
-  height: 0.625em;
-  pointer-events: none;
   position: absolute;
-  right: 1.125em;
-  top: 45%;
-  transform: rotate(-45deg) translateY(-50%);
-  width: 0.625em;
-  transition: border-color 0.2s ease;
+  right: 0.25rem;
+  top: 50%;
+  width: 0.35rem;
+  height: 0.35rem;
+  border: 1.5px solid var(--ink-faint);
+  border-top: 0;
+  border-right: 0;
+  transform: translateY(-70%) rotate(-45deg);
+  pointer-events: none;
+  transition: border-color 200ms ease;
 }
 
-.select:hover::after {
-  border-color: var(--color-on-surface);
-}
+.select:hover::after { border-color: var(--ink-dim); }
 
-.select--primary select {
-  border-color: var(--color-primary);
-}
-
-/* Input */
+/* The amounts are the content. Tabular figures keep the decimal points of
+   every row in one column. */
 .input {
-  background-color: var(--color-input-bg);
-  border: 1px solid var(--color-input-border);
-  border-radius: 8px;
-  color: var(--color-on-surface);
-  display: block;
-  font-size: 1rem;
-  max-width: 100%;
-  outline: none;
-  padding: 0.625rem 0.875rem;
   width: 100%;
-  height: 2.75rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink-soft);
+  font-family: inherit;
+  font-size: clamp(1.5rem, 6.5vw, 2rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  outline: none;
+  transition: color 220ms ease;
 }
 
+.input--primary,
 .input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px var(--color-input-focus-ring);
+  color: var(--ink);
 }
 
-.input--primary {
-  border-color: var(--color-primary);
-}
+.input::placeholder { color: var(--ink-faint); }
 
-/* Button */
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
 .btn {
-  background-color: var(--color-surface-variant);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  color: var(--color-on-surface);
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1rem;
-  font-weight: 500;
-  padding: 0.625rem 1.25rem;
-  height: 2.75rem;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  white-space: nowrap;
+  border: 0;
+  background: none;
+  color: var(--ink-dim);
+  font: inherit;
+  cursor: pointer;
   user-select: none;
+  transition: color 200ms ease, background 200ms ease, opacity 200ms ease;
 }
 
-.btn:hover {
-  background-color: var(--color-primary-muted);
-  border-color: var(--color-primary);
-  transform: translateY(-1px);
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
-.btn:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--color-input-focus-ring);
-}
-
-.btn:active {
-  transform: translateY(1px);
-}
-
-.btn--primary {
-  background-color: var(--color-primary);
-  border-color: transparent;
-  color: white;
-}
-
-.btn--primary:hover {
-  background-color: var(--color-primary-hover);
-}
-
-.btn--secondary {
-  background-color: var(--color-secondary);
-  border-color: transparent;
-  color: white;
-}
-
-.btn--secondary:hover {
-  background-color: var(--color-secondary-hover);
-}
-
+/* Remove a row: present but quiet until you reach for it */
 .btn--secondary-light {
-  background-color: var(--color-secondary-muted);
-  border-color: transparent;
-  color: var(--color-secondary);
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--ink-faint);
 }
 
 .btn--secondary-light:hover {
-  background-color: var(--color-secondary-muted);
-  color: var(--color-secondary-hover);
+  background: var(--glass-raised);
+  color: var(--danger);
 }
 
-.btn--ghost {
-  background-color: transparent;
-  border-color: transparent;
-  color: var(--color-link);
-}
-
-.btn--ghost:hover {
-  color: var(--color-link-hover);
-  text-decoration: underline;
-  background-color: transparent;
-}
-
-.btn--small {
-  font-size: 0.875rem;
-  height: 2.25rem;
-  padding: 0.375rem 0.75rem;
-}
-
-.btn--full {
-  width: 100%;
-}
-
-/* ==========================================================================
-   Utility Classes
-   ========================================================================== */
-
-/* Text Alignment */
-.text-center {
-  text-align: center;
-}
-
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
-
-/* Spacing */
-.mt-1 { margin-top: 0.25rem; }
-.mt-2 { margin-top: 0.5rem; }
-.mt-3 { margin-top: 1rem; }
-.mt-4 { margin-top: 1.5rem; }
-.mt-5 { margin-top: 2rem; }
-
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-3 { margin-bottom: 1rem; }
-.mb-4 { margin-bottom: 1.5rem; }
-.mb-5 { margin-bottom: 2rem; }
-
-/* ==========================================================================
-   App-Specific Components
-   ========================================================================== */
-
-/* Currency Page */
-.currency-page {
-  padding: 1.5rem;
-  width: 100%;
-}
-
-/* Add Currency Button */
 .btn--add-currency {
-  background-color: var(--color-success-muted);
-  border-color: transparent;
-  color: var(--color-success);
-  margin-top: 1.5rem;
+  width: 100%;
+  height: 2.75rem;
+  margin-top: 0.375rem;
+  border-radius: var(--radius-row);
+  font-size: 0.6875rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  border: 1px solid var(--hairline);
 }
 
 .btn--add-currency:hover {
-  background-color: var(--color-success-muted);
-  border-color: var(--color-success);
-  color: var(--color-success-hover);
+  color: var(--accent);
+  border-color: var(--accent-glow);
+  background: var(--glass-well);
 }
 
-.btn--add-currency:focus {
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+.btn--full { width: 100%; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.section {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
 }
 
-.btn--add-currency:active {
-  background-color: var(--color-success-muted);
-  border-color: var(--color-success);
-  color: var(--color-success);
+.section p {
+  font-size: 0.6875rem;
+  font-weight: 550;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.btn--ghost {
+  color: var(--ink-dim);
+  font-size: 0.6875rem;
+  font-weight: 550;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.btn--ghost:hover { color: var(--accent); }
+
+.btn--small { padding: 0.25rem 0; }
+
+.text-center { text-align: center; }
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  body::before { animation: none; }
+
+  .currency-page { animation: none; }
+
+  .form-group--inline:has(.input--primary)::after { animation: none; }
+
+  *, *::before, *::after {
+    transition-duration: 1ms !important;
+  }
 }

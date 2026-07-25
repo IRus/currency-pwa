@@ -4,15 +4,13 @@ export function Footer({updated}: {
   readonly updated: string
 }) {
   return (
-    <div className="section">
-      <h2 className="text-center">
-        Last update: {updated}
-      </h2>
+    <footer className="section">
       <p className="text-center">
-        <a href="https://github.com/IRus/currency-pwa" className="btn btn--ghost btn--small">
-          ❤︎ GitHub
-        </a>
+        Rates from {updated}
       </p>
-    </div>
+      <a href="https://github.com/IRus/currency-pwa" className="btn btn--ghost btn--small">
+        ❤︎ GitHub
+      </a>
+    </footer>
   )
 }
