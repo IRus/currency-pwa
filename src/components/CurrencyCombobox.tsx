@@ -10,8 +10,8 @@ import {currencyNames} from "./CurrencyNames";
  * scrolling past everything. This is the same control with a text field in
  * front of it — type "kron", "SEK" or "swed" and the list narrows.
  */
-export function CurrencyCombobox({id, currencies, currency, selected, onChange}: {
-  readonly id: number,
+export function CurrencyCombobox({row, currencies, currency, selected, onChange}: {
+  readonly row: number,
   readonly currencies: ReadonlyArray<string>,
   readonly currency: string,
   readonly selected: boolean,
@@ -94,7 +94,7 @@ export function CurrencyCombobox({id, currencies, currency, selected, onChange}:
         className="combo__input"
         type="text"
         role="combobox"
-        aria-label={`Currency for row ${id + 1}`}
+        aria-label={`Currency for row ${row + 1}`}
         aria-expanded={open}
         aria-controls={listId}
         aria-autocomplete="list"

@@ -1,5 +1,5 @@
 import {describe, expect, it} from "vitest";
-import {convert, sanitizeRows} from "./convert";
+import {convert, isPriced, sanitizeRows} from "./convert";
 
 const rates = {EUR: 1, USD: 1.1, BYN: 3.5};
 
@@ -36,17 +36,40 @@ describe("convert", () => {
 });
 
 describe("sanitizeRows", () => {
-  it("drops currencies that today's rates no longer price", () => {
-    const rows = sanitizeRows([{currency: "XXX", value: "100"}, {currency: "EUR", value: "1"}], rates);
-    expect(rows.map(row => row.currency)).toEqual(["EUR"]);
+  it("keeps currencies the current rates do not price", () => {
+    const rows = sanitizeRows([{currency: "XXX", value: "100"}, {currency: "EUR", value: "1"}]);
+    expect(rows.map(row => row.currency)).toEqual(["XXX", "EUR"]);
   });
 
   it("clears persisted NaN values", () => {
-    expect(sanitizeRows([{currency: "EUR", value: "NaN"}], rates)[0].value).toBe("");
+    expect(sanitizeRows([{currency: "EUR", value: "NaN"}])[0].value).toBe("");
+  });
+
+  it("keeps the first of two rows holding the same currency", () => {
+    const rows = sanitizeRows([{currency: "EUR", value: "1"}, {currency: "EUR", value: "2"}]);
+    expect(rows).toEqual([{currency: "EUR", value: "1", selected: false}]);
+  });
+
+  it("drops rows without a currency", () => {
+    expect(sanitizeRows([null, {value: "1"}, {currency: "", value: "1"}])).toEqual([]);
   });
 
   it("returns nothing for input that is not an array", () => {
-    expect(sanitizeRows(null, rates)).toEqual([]);
-    expect(sanitizeRows({currency: "EUR"}, rates)).toEqual([]);
+    expect(sanitizeRows(null)).toEqual([]);
+    expect(sanitizeRows({currency: "EUR"})).toEqual([]);
+  });
+});
+
+describe("isPriced", () => {
+  it("accepts a positive finite rate", () => {
+    expect(isPriced(rates, "BYN")).toBe(true);
+  });
+
+  it("rejects a currency the table does not list", () => {
+    expect(isPriced(rates, "XXX")).toBe(false);
+  });
+
+  it("rejects a rate that cannot divide", () => {
+    expect(isPriced({ZWL: 0}, "ZWL")).toBe(false);
   });
 });

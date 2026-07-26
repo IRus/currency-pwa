@@ -15,7 +15,7 @@ function options(): Array<string> {
 }
 
 function open(onChange = vi.fn()) {
-  render(<CurrencyCombobox id={0} currencies={currencies} currency="USD" selected={false} onChange={onChange}/>);
+  render(<CurrencyCombobox row={0} currencies={currencies} currency="USD" selected={false} onChange={onChange}/>);
   return onChange;
 }
 

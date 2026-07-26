@@ -49,6 +49,19 @@ it("reprices everything when another source is picked", async () => {
   expect(screen.getByText(/July 25, 2026/)).toBeDefined();
 });
 
+it("keeps a currency a detour through another source cannot price", async () => {
+  const user = userEvent.setup();
+  const narrow = {...data.sources[1], rates: {BYN: 1, USD: 1 / 7}};
+  render(<CurrencyPage data={{sources: [data.sources[0], narrow]}}/>);
+
+  await user.click(screen.getByRole("button", {name: "NBRB"}));
+  expect(screen.queryByLabelText("Amount in EUR")).toBeNull();
+
+  await user.click(screen.getByRole("button", {name: "Fixer.io"}));
+
+  expect((screen.getByLabelText("Amount in EUR") as HTMLInputElement).value).toBe("0.91");
+});
+
 it("comes back to the source that was picked last time", () => {
   localStorage.setItem("currency_source", "nbrb");
 

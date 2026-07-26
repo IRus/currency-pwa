@@ -1,8 +1,9 @@
 import * as React from "react";
 import {CurrencyCombobox} from "./CurrencyCombobox";
 
-export function Currency({id, currencies, currency, value, onDelete, update, selected}: {
+export function Currency({id, row, currencies, currency, value, onDelete, update, selected}: {
   readonly id: number,
+  readonly row: number,
   readonly currencies: ReadonlyArray<string>,
   readonly currency: string,
   readonly value: string,
@@ -14,7 +15,7 @@ export function Currency({id, currencies, currency, value, onDelete, update, sel
     <div className="form-group form-group--inline">
       <div className="form-control-wrapper">
         <CurrencyCombobox
-          id={id}
+          row={row}
           currencies={currencies}
           currency={currency}
           selected={selected}
